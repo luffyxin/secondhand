@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/img/Pig.ico">
+    <link rel="icon" type="image/x-icon" href="/img/Pig.ico">
+    <title>登陆闲猪</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/signin.css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="js/messages_zh.js"></script>
+  </head>
+
+  <body class="text-center">
+
+  <form class="form-signin" id="logForm" th:action="@{/tologin}" method="post">
+      <img class="mb-4" src="/img/Pig_chivalrous_407px_505743_easyicon.net.svg" alt="" width="72" height="72">
+      <h1 class="h3 mb-3 font-weight-normal">登录</h1>
+      <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"/>
+      <label for="username" class="sr-only">用户名</label>
+      <input name="username" type="text" id="username" class="form-control" placeholder="用户名" required autofocus>
+      <label for="inputPassword" class="sr-only">密码</label>
+      <input name="password" type="password" id="inputPassword" class="form-control" style="margin-bottom: 10px;" placeholder="密码" required>
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me"> 记住我
+        </label>
+      </div>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">登陆</button>
+      <a class="btn " th:href="@{/register}" >注册</a>
+      <p class="mt-5 mb-3 text-muted">&copy; 校园二手交易</p>
+    </form>
+  </body>
+</html>

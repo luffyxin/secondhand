@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    username: root
+    password: dengxin
+    url: jdbc:mysql://127.0.0.1:3306/secondhand?useSSL=false
+    driver-class-name: com.mysql.jdbc.Driver
+mybatis:
+  config-location: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml

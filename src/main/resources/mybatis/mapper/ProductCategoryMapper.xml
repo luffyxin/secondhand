@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wuit.dx.mapper.ProductCategoryMapper">
+    <resultMap id="categoryResultMap" type="ProductCategory">
+        <id column="product_category_id" property="productCategoryId" />
+        <result column="create_time" property="createTime" />
+        <result column="product_category_name" property="productCategoryName" />
+        <result column="priority" property="priority"/>
+        <association property="parent" column="parent_id"
+                     javaType="ProductCategory">
+            <id column="parent_id" property="productCategoryId" />
+            <result column="product_category_name" property="productCategoryName" />
+        </association>
+    </resultMap>
+
+    <select id="getAllCategory" resultMap="categoryResultMap">
+          SELECT * FROM product_category
+    </select>
+</mapper>
