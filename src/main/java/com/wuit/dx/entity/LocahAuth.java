@@ -27,8 +27,10 @@ public class LocahAuth {
     // 最近一次的更新时间
     private Date lastEditTime;
     // 个人信息，关系为一一对应
-    @JoinColumn(name = "person_info")
-    private PersonInfo personInfo;
+
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private PersonInfo personId;
 
     public Long getLocalAuthId() {
         return localAuthId;
@@ -70,11 +72,11 @@ public class LocahAuth {
         this.lastEditTime = lastEditTime;
     }
 
-    public PersonInfo getPersonInfo() {
-        return personInfo;
+    public PersonInfo getPersonId() {
+        return personId;
     }
 
-    public void setPersonInfo(PersonInfo personInfo) {
-        this.personInfo = personInfo;
+    public void setPersonId(PersonInfo personId) {
+        this.personId = personId;
     }
 }

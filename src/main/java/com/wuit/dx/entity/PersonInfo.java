@@ -1,7 +1,6 @@
 package com.wuit.dx.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -45,9 +44,9 @@ public class PersonInfo {
     @Transient
     private List<Product> products;
     // 属于哪个账号
-
+    @OneToOne
     @JoinColumn(name = "auth_id")
-    private LocahAuth authId;
+    private LocahAuth local_auth;
 
 
     public String getTel() {
@@ -66,12 +65,12 @@ public class PersonInfo {
         this.address = address;
     }
 
-    public LocahAuth getAuthId() {
-        return authId;
+    public LocahAuth getLocal_auth() {
+        return local_auth;
     }
 
-    public void setAuthId(LocahAuth authId) {
-        this.authId = authId;
+    public void setLocal_auth(LocahAuth local_auth) {
+        this.local_auth = local_auth;
     }
 
     public Long getUserId() {

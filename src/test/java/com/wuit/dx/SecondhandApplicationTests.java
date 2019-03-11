@@ -1,8 +1,7 @@
 package com.wuit.dx;
 
-import com.wuit.dx.entity.LocahAuth;
+import com.wuit.dx.dao.ProductCategoryDAO;
 
-import com.wuit.dx.mapper.LocahAuthMapper;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.annotation.Resource;
 import java.util.Date;
 
 
@@ -17,28 +17,11 @@ import java.util.Date;
 @SpringBootTest
 public class SecondhandApplicationTests {
 
-	@Autowired
-	private LocahAuthMapper locahAuthMapper;
-
-
+	@Resource
+	private ProductCategoryDAO productCategoryDAO;
 	@Test
-	public void contextLoads() {
-
-		LocahAuth locahAuth=locahAuthMapper.getAuthByName("dengxin");
-		System.out.println(locahAuth.getUsername());
-
-	}
-
-	@Test
-	public void insertAuth(){
-		LocahAuth locahAuth=new LocahAuth();
-		locahAuth.setUsername("dengxin01070");
-		locahAuth.setPassword("123456789");
-		locahAuth.setCreateTime(new Date());
-		locahAuth.setLastEditTime(new Date());
-		int i=locahAuthMapper.insertAuth(locahAuth);
-		System.out.println(i);
-
+	public void test(){
+		productCategoryDAO.findAll();
 	}
 
 }

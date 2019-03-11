@@ -16,8 +16,8 @@ public class ProductCategory {
     // 主键ID
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column (name = "product_category_id")
-    private Long productCategoryId;
+    @Column (name = "id")
+    private Long Id;
     // 类别名
     private String productCategoryName;
     // 权重，越大越排前显示
@@ -26,15 +26,15 @@ public class ProductCategory {
     private Date createTime;
     // 父类别
     @ManyToOne
-    @JoinColumn(name = "product_category_id")
+    @JoinColumn(name = "parent_id")
     private ProductCategory parent;
 
-    public Long getProductCategoryId() {
-        return productCategoryId;
+    public Long getId() {
+        return Id;
     }
 
-    public void setProductCategoryId(Long productCategoryId) {
-        this.productCategoryId = productCategoryId;
+    public void setId(Long id) {
+        Id = id;
     }
 
     public String getProductCategoryName() {
@@ -69,14 +69,5 @@ public class ProductCategory {
         this.parent = parent;
     }
 
-    @Override
-    public String toString() {
-        return "ProductCategory{" +
-                "productCategoryId=" + productCategoryId +
-                ", productCategoryName='" + productCategoryName + '\'' +
-                ", priority=" + priority +
-                ", createTime=" + createTime +
-                ", parent=" + parent +
-                '}';
-    }
+
 }
