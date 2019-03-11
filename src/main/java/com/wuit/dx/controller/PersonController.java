@@ -47,13 +47,9 @@ public class PersonController {
             model.addAttribute("msg","账号密码错误");
             return "/login";
         }
-
     }
 
-    @RequestMapping("/personcenter")
-    public String personCenter(){
-        return "/personcenter";
-    }
+
     @RequestMapping("/personinfo")
     public String personinfo(MultipartFile profile,String email,String name,String gender) throws IOException {
         System.out.println(email);

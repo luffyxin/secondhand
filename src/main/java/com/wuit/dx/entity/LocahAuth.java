@@ -1,13 +1,22 @@
 package com.wuit.dx.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
 import java.util.Date;
 
 /**
  * Created by ${DX} on 2018/10/23.
  */
+@Entity
+@Table(name = "local_auth")
+@JsonIgnoreProperties({ "handler","hibernateLazyInitializer" })
 public class LocahAuth {
 
     // 主键ID
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "local_auth_id")
     private Long localAuthId;
     // 帐号
     private String username;
@@ -18,6 +27,7 @@ public class LocahAuth {
     // 最近一次的更新时间
     private Date lastEditTime;
     // 个人信息，关系为一一对应
+    @JoinColumn(name = "person_info")
     private PersonInfo personInfo;
 
     public Long getLocalAuthId() {

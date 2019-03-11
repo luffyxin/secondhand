@@ -1,11 +1,11 @@
 package com.wuit.dx.service.Impl;
 
+import com.wuit.dx.dao.ProductCategoryDAO;
 import com.wuit.dx.entity.ProductCategory;
-import com.wuit.dx.mapper.ProductCategoryMapper;
 import com.wuit.dx.service.ProductCategoryService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -14,11 +14,11 @@ import java.util.List;
 @Service
 public class ProductCategoryServiceImpl implements ProductCategoryService {
 
-    @Autowired
-    private ProductCategoryMapper productCategoryMapper;
+    @Resource
+    private ProductCategoryDAO productCategoryDAO;
 
     @Override
     public List<ProductCategory> getAllProCate() {
-        return productCategoryMapper.getAllCategory();
+        return productCategoryDAO.findAll();
     }
 }

@@ -1,13 +1,23 @@
 package com.wuit.dx.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.data.annotation.Id;
+
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
 /**
  * Created by ${DX} on 2018/10/23.
  */
+@Entity
+@Table(name = "person_info")
+@JsonIgnoreProperties({ "handler","hibernateLazyInitializer" })
 public class PersonInfo {
     // 主键ID
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column (name = "user_id")
     private Long userId;
     // 用户名称
     private String name;
@@ -32,9 +42,12 @@ public class PersonInfo {
     // 最近一次的更新时间
     private Date lastEditTime;
     // 用户拥有的商品
+    @Transient
     private List<Product> products;
     // 属于哪个账号
-    private Long authId;
+
+    @JoinColumn(name = "auth_id")
+    private LocahAuth authId;
 
 
     public String getTel() {
@@ -53,11 +66,11 @@ public class PersonInfo {
         this.address = address;
     }
 
-    public Long getAuthId() {
+    public LocahAuth getAuthId() {
         return authId;
     }
 
-    public void setAuthId(Long authId) {
+    public void setAuthId(LocahAuth authId) {
         this.authId = authId;
     }
 

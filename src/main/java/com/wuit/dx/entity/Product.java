@@ -1,13 +1,22 @@
 package com.wuit.dx.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
 /**
  * Created by ${DX} on 2018/10/23.
  */
+@Entity
+@Table(name = "product")
+@JsonIgnoreProperties({ "handler","hibernateLazyInitializer" })
 public class Product {
     // 主键ID
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "product_id")
     private Long productId;
     // 商品名
     private String productName;
@@ -27,12 +36,18 @@ public class Product {
     private Date lastEditTime;
     // 0.下架 1.在前端展示系统展示
     private Integer enableStatus;
+
     // 图片详情图列表，跟商品是多对一的关系
+    @Transient
     private List<ProductImg> productImgList;
     // 商品类别，一件商品仅属于一个商品类别
+    @ManyToOne
+    @JoinColumn(name = "product_category_id")
     private ProductCategory productCategory;
     // 商品属于谁的
-    private Long personId;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private PersonInfo personInfo;
 
     public Long getProductId() {
         return productId;
@@ -130,11 +145,11 @@ public class Product {
         this.productCategory = productCategory;
     }
 
-    public Long getPersonId() {
-        return personId;
+    public PersonInfo getPersonInfo() {
+        return personInfo;
     }
 
-    public void setPersonId(Long personId) {
-        this.personId = personId;
+    public void setPersonInfo(PersonInfo personInfo) {
+        this.personInfo = personInfo;
     }
 }
