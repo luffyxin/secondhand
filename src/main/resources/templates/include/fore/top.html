@@ -1,0 +1,23 @@
+<nav class="top" th:fragment="html" xmlns:th="http://www.w3.org/1999/xhtml">
+    <a th:href="@{/}">
+        <span style="color:#C40000;margin:0px" class=" glyphicon glyphicon-home redColor"></span>
+        闲猪首页
+    </a>
+
+    <span>哄，欢迎来闲猪</span>
+
+    <span th:if="${null!=session.user}">
+        <a href="personcenter" th:text="${session.user.username}"></a>
+        <a href="forelogout" >退出</a>
+    </span>
+
+    <span th:if="${null==session.user}">
+        <a href="login">请登录</a>
+        <a href="register">免费注册</a>
+    </span>
+
+    <span class="pull-right">
+            <a href="bought">我的订单</a>
+            <a href="publish">发布商品</a>
+    </span>
+</nav>

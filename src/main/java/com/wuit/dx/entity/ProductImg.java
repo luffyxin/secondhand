@@ -16,8 +16,8 @@ public class ProductImg {
     // 主键ID
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Column(name = "product_img_id")
-    private Long productImgId;
+    @Column(name = "id")
+    private Long id;
     // 图片地址
     private String imgAddr;
     // 图片简介
@@ -31,12 +31,12 @@ public class ProductImg {
     @JoinColumn(name = "product_id")
     private Product productId;
 
-    public Long getProductImgId() {
-        return productImgId;
+    public Long getId() {
+        return id;
     }
 
-    public void setProductImgId(Long productImgId) {
-        this.productImgId = productImgId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getImgAddr() {

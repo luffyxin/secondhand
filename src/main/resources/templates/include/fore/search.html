@@ -1,0 +1,18 @@
+<div class th:fragment="html" xmlns:th="http://www.w3.org/1999/xhtml">
+    <a th:href="${application.contextPath}">
+        <img id="logo" src="img/logo.png" class="logo" style="margin:47px 0px 0px 200px">
+    </a>
+    <form action="search" method="get" >
+        <div class="searchDiv">
+            <input name="keyword" type="text" placeholder="电脑  游戏机 ">
+            <button  type="submit" class="searchButton">搜索</button>
+            <div class="searchBelow">
+                <span th:each="c,status: ${application.categories_below_search}" th:if="${status.index>=5 && status.index<=8}">
+                    <a th:href="@{'category?cid='+${c.id}}" th:text="${c.name}" ></a>
+                    <span th:if="${status.index!=8}">|</span>
+                </span>
+
+            </div>
+        </div>
+    </form>
+</div>

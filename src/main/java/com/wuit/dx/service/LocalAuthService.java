@@ -11,5 +11,5 @@ public interface LocalAuthService {
 
     boolean registerAuth(LocahAuth localAuth);
 
-    boolean loginAuth(LocahAuth locahAuth);
+    LocahAuth loginAuth(LocahAuth locahAuth);
 }

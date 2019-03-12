@@ -16,8 +16,8 @@ public class LocahAuth {
     // 主键ID
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "local_auth_id")
-    private Long localAuthId;
+    @Column(name = "id")
+    private Long id;
     // 帐号
     private String username;
     // 密码
@@ -26,18 +26,13 @@ public class LocahAuth {
     private Date createTime;
     // 最近一次的更新时间
     private Date lastEditTime;
-    // 个人信息，关系为一一对应
 
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private PersonInfo personId;
-
-    public Long getLocalAuthId() {
-        return localAuthId;
+    public Long getId() {
+        return id;
     }
 
-    public void setLocalAuthId(Long localAuthId) {
-        this.localAuthId = localAuthId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -72,11 +67,4 @@ public class LocahAuth {
         this.lastEditTime = lastEditTime;
     }
 
-    public PersonInfo getPersonId() {
-        return personId;
-    }
-
-    public void setPersonId(PersonInfo personId) {
-        this.personId = personId;
-    }
 }

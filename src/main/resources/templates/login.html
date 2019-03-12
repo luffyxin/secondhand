@@ -10,18 +10,18 @@
     <title>登陆闲猪</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap/3.3.6/bootstrap.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link href="css/signin.css" rel="stylesheet">
-    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="js/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="js/messages_zh.js"></script>
+    <link href="css/fore/signin.css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery/2.0.0/jquery.min.js"></script>
+    <script type="text/javascript" src="js/validate/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="js/validate/messages_zh.js"></script>
   </head>
 
   <body class="text-center">
 
   <form class="form-signin" id="logForm" th:action="@{/tologin}" method="post">
-      <img class="mb-4" src="/img/Pig_chivalrous_407px_505743_easyicon.net.svg" alt="" width="72" height="72">
+      <img class="mb-4" src="img/Pig_chivalrous_407px_505743_easyicon.net.svg" alt="" width="72" height="72">
       <h1 class="h3 mb-3 font-weight-normal">登录</h1>
       <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"/>
       <label for="username" class="sr-only">用户名</label>

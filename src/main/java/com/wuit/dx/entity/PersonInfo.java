@@ -16,8 +16,8 @@ public class PersonInfo {
     // 主键ID
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column (name = "user_id")
-    private Long userId;
+    @Column (name = "id")
+    private Long id;
     // 用户名称
     private String name;
     // 用户头像
@@ -73,12 +73,12 @@ public class PersonInfo {
         this.local_auth = local_auth;
     }
 
-    public Long getUserId() {
-        return userId;
+    public Long getId() {
+        return id;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

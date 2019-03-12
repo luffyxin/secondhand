@@ -36,15 +36,8 @@ public class LocalAuthServiceImpl implements LocalAuthService {
     }
 
     @Override
-    public boolean loginAuth(LocahAuth locahAuth) {
-        LocahAuth right = locahAuthDAO.findByUsername(locahAuth.getUsername());
-        if (right == null) {
-            return false;
-        }
-
-        if (right.getPassword().equals(locahAuth.getPassword())) {
-            return true;
-        }
-        return false;
+    public LocahAuth loginAuth(LocahAuth locahAuth) {
+        LocahAuth auth=  locahAuthDAO.findByUsernameAndPassword(locahAuth.getUsername(),locahAuth.getPassword());
+        return auth;
     }
 }

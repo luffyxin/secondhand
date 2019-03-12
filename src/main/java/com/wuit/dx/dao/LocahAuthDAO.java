@@ -9,4 +9,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface LocahAuthDAO extends JpaRepository<LocahAuth,Integer> {
     LocahAuth findByUsername(String userName);
+    LocahAuth findByUsernameAndPassword(String userName,String password);
 }

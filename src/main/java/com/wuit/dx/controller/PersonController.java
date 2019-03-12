@@ -39,14 +39,19 @@ public class PersonController {
 
     @RequestMapping("/tologin")
     public String login(LocahAuth locahAuth,Model model,HttpServletRequest request){
-       boolean is=  localAuthService.loginAuth(locahAuth);
-        if(is){
-            request.getSession().setAttribute("user",locahAuth);
+       LocahAuth auth=  localAuthService.loginAuth(locahAuth);
+        if(auth!=null){
+            request.getSession().setAttribute("user",auth);
             return "redirect:/";
         }else {
             model.addAttribute("msg","账号密码错误");
             return "/login";
         }
+    }
+    @RequestMapping("/forelogout")
+    public String forelogout(HttpServletRequest request){
+        request.getSession().removeAttribute("user");
+        return "redirect:/";
     }
 
 

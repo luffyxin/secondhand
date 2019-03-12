@@ -16,8 +16,8 @@ public class Product {
     // 主键ID
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "product_id")
-    private Long productId;
+    @Column(name = "id")
+    private Long id;
     // 商品名
     private String productName;
     // 商品简介
@@ -49,12 +49,12 @@ public class Product {
     @JoinColumn(name = "user_id")
     private PersonInfo personInfo;
 
-    public Long getProductId() {
-        return productId;
+    public Long getId() {
+        return id;
     }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getProductName() {
