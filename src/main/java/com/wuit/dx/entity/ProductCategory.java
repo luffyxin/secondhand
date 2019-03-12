@@ -24,10 +24,6 @@ public class ProductCategory {
     private Integer priority;
     // 创建时间
     private Date createTime;
-    // 父类别
-    @ManyToOne
-    @JoinColumn(name = "parent_id")
-    private ProductCategory parent;
 
     public Long getId() {
         return id;
@@ -59,14 +55,6 @@ public class ProductCategory {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
-    }
-
-    public ProductCategory getParent() {
-        return parent;
-    }
-
-    public void setParent(ProductCategory parent) {
-        this.parent = parent;
     }
 
 

@@ -2,7 +2,7 @@
 
     <div class="imgAndInfo">
         <div class="imgInimgAndInfo">
-            <img v-if="firstProductImage!=null" :src="'img/productSingle/'+products.imgAddr+'.jpg'" class="bigImg">
+            <img v-if="products.imgAddr!=null" :src="'img/productSingle_middle/'+products.imgAddr+'.jpg'" class="bigImg">
         </div>
         <div class="infoInimgAndInfo">
 
@@ -11,23 +11,19 @@
             </div>
 
                 <div class="productPriceDiv">
-                    <div class="gouwujuanDiv"><img height="16px" src="img/site/gouwujuan.png">
-                        <span> 全天猫实物商品通用</span>
-
-                    </div>
                     <div class="originalDiv">
-                        <span class="originalPriceDesc">价格</span>
+                        <span class="originalPriceDesc">原价格</span>
                         <span class="originalPriceYuan">¥</span>
                         <span class="originalPrice">
-	                    	{{p.normalPrice|formatMoneyFilter}}
+	                    	{{products.normalPrice|formatMoneyFilter}}
 	                    </span>
                     </div>
 
                     <div class="promotionDiv">
-                        <span class="promotionPriceDesc">促销价 </span>
+                        <span class="promotionPriceDesc">二手价 </span>
                         <span class="promotionPriceYuan">¥</span>
                         <span class="promotionPrice">
-							{{p.promotionPrice|formatMoneyFilter}}
+							{{products.promotionPrice|formatMoneyFilter}}
 	                    </span>
                     </div>
                 </div>
@@ -35,7 +31,6 @@
 
             <div class="buyDiv">
                 <a class="buyLink" ><button class="buyButton" >立即购买</button></a>
-                <a href="#nowhere" class="addCartLink"><button class="addCartButton"><span class="glyphicon glyphicon-shopping-cart"></span>加入购物车</button></a>
             </div>
         </div>
 

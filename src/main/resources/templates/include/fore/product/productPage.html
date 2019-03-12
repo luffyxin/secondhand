@@ -17,8 +17,7 @@
                     load:function(){
                         var url =  this.uri+"/"+pid;
                         axios.get(url).then(function(response) {
-                            var result = response.data;
-                            vue.products=result.data;
+                            vue.products = response.data;
                         });
                     }
                 }
@@ -28,9 +27,9 @@
         });
     </script>
 
-    <title>闲猪校园二手交易网 -- {{p.productName}}</title>
+    <title>闲猪校园二手交易网 -- {{products.productName}}</title>
     <div class="productPageDiv">
-        <div th:replace="include/fore/product/imgAndInfo::html" ></div>
+        <div th:replace="include/fore/product/imageAndInfo::html" ></div>
         <div th:replace="include/fore/product/productDetail::html" ></div>
     </div>
 </div>
