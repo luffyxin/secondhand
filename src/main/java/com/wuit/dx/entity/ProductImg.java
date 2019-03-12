@@ -29,7 +29,7 @@ public class ProductImg {
     // 标明是属于哪个商品的图片
     @ManyToOne
     @JoinColumn(name = "product_id")
-    private Product productId;
+    private Product product;
 
     public Long getId() {
         return id;
@@ -71,11 +71,11 @@ public class ProductImg {
         this.createTime = createTime;
     }
 
-    public Product getProductId() {
-        return productId;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setProductId(Product productId) {
-        this.productId = productId;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }

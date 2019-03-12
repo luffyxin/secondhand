@@ -1,0 +1,54 @@
+<div th:fragment="html" xmlns:th="http://www.w3.org/1999/xhtml">
+    <script>
+        $(function(){
+            var pid = getUrlParms("pid");
+            var data4Vue = {
+                uri:'foreproduct',
+                p:'',
+                category:null,
+                firstProductImage:null,
+                pvs:[],
+                reviews:[],
+                showDetail:true,
+                showReview:false,
+                user:{name:'', password:''}
+            };
+            //ViewModel
+            var vue = new Vue({
+                el: '#workingArea',
+                data: data4Vue,
+                mounted:function(){ //mounted　表示这个 Vue 对象加载成功了
+                    this.load();
+                },
+                methods: {
+                    load:function(){
+                        var url =  this.uri+"/"+pid;
+                        axios.get(url).then(function(response) {
+                            var result = response.data;
+                            vue.p=result.data.product;
+                            vue.pvs=result.data.pvs;
+                            vue.reviews=result.data.reviews;
+                            vue.category = vue.p.category;
+                            vue.firstProductImage = vue.p.firstProductImage;
+                            vue.$nextTick(function(){
+                                imgAndInfoPageRegisterListeners(vue);
+                            })
+                        });
+
+                    }
+                }
+            });
+
+
+        });
+    </script>
+
+    <title>闲猪校园二手交易网 -- {{p.name}}</title>
+    <div class="categoryPictureInProductPageDiv">
+        <img v-if="category!=null" class="categoryPictureInProductPage" :src="'img/category/'+category.id+'.jpg'">
+    </div>
+    <div class="productPageDiv">
+        <div th:replace="include/fore/product/imgAndInfo::html" ></div>
+        <div th:replace="include/fore/product/productDetail::html" ></div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+<div th:fragment="html" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="homepageCategoryProducts">
+            <div class="productItem"  v-for="p,index in products">
+                <a :href="'product?pid='+p.id">
+                    <img width="100px" :src="'img/productSingle_middle/'+p.imgAddr+'.jpg'">
+                </a>
+
+                <a class="productItemDescLink" href="'product?pid='+p.id">
+                                    <span class="productItemDesc">[热销]
+                                    {{p.productName | subStringFilter(0,20)}}
+                                    </span>
+                </a>
+                <span class="productPrice">
+                                    {{p.promotionPrice | formatMoneyFilter}}
+                                </span>
+            </div>
+            <div style="clear:both"></div>
+        <img id="endpng" class="endpng" src="img/site/end.png">
+    </div>
+</div>

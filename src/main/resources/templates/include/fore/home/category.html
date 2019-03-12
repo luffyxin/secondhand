@@ -1,0 +1,17 @@
+<div th:fragment="html" xmlns:th="http://www.w3.org/1999/xhtml">
+    <img src="img/site/catear.png" id="catear" class="catear"/>
+
+    <div class="categoryWithCarousel">
+        <div class="headbar show1">
+            <div class="head " style="margin-left: 150px">
+                <span style="margin-left:10px" class="glyphicon glyphicon-th-list"></span>
+                <span style="margin-left:10px" >商品分类</span>
+            </div>
+            <div class="rightMenu">
+                <span v-for="c,index in categories" v-if='index<=10'>
+                        <a :href="'category?cid='+c.id">{{c.productCategoryName}}</a>
+                    </span>
+            </div>
+        </div>
+    </div>
+</div>

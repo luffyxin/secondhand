@@ -26,4 +26,9 @@ public class ForePageController {
     public String home(){
         return "fore/home";
     }
+
+    @GetMapping(value="/product")
+    public String product(){
+        return "fore/product";
+    }
 }

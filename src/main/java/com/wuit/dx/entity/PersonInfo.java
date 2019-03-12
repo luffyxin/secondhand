@@ -45,7 +45,7 @@ public class PersonInfo {
     private List<Product> products;
     // 属于哪个账号
     @OneToOne
-    @JoinColumn(name = "auth_id")
+    @JoinColumn(name = "id")
     private LocahAuth local_auth;
 
 

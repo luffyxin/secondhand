@@ -8,4 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @since 2019/3/11 17:23
  */
 public interface PersonInfoDAO extends JpaRepository<PersonInfo,Integer> {
+
+     PersonInfo findById(Long id);
+
 }
