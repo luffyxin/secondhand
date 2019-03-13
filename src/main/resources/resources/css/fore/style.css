@@ -723,6 +723,12 @@ div.imgAndInfo img.bigImg {
 	padding: 20px;
 	border: 1px solid #F2F2F2;
 }
+div.imgAndInfo img.profileImg {
+	width: 100px;
+	height: 100px;
+	padding: 20px;
+	border: 1px solid #F2F2F2;
+}
 
 div.imgAndInfo div.smallImageDiv {
 	width: 80%;
@@ -797,7 +803,7 @@ div.infoInimgAndInfo div.promotionDiv {
 
 div.infoInimgAndInfo div.productPriceDiv {
 	background-image: url(../../img/site/priceBackground.png);
-	height: 102px;
+	height: 200px;
 	padding: 10px;
 	color: #666666;
 }
@@ -844,6 +850,18 @@ div.infoInimgAndInfo span.promotionPrice {
 	/*     vertical-align: top; */
 	/*     vertical-align: middle; */
 }
+div.infoInimgAndInfo span.maijia {
+	color: #0f0f0f;
+	font-family: Arial;
+	font-size: 25px;
+	font-weight: bold;
+}
+div.infoInimgAndInfo span.tel {
+	color: #0f0f0f;
+	font-family: Arial;
+	font-size: 20px;
+}
+
 
 div.infoInimgAndInfo div.productSaleAndReviewNumber {
 	margin: 20px 0px;
