@@ -37,7 +37,7 @@ public class ForeRESTController {
     }
 
     @GetMapping("/foreproduct/{pid}")
-    public Object product(@PathVariable("pid") Long pid) {
+    public Object product(@PathVariable("pid") int pid) {
         Product p= productService.getProductById(pid);
         return  p;
     }

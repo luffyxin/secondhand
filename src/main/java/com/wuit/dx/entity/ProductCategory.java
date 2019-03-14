@@ -17,7 +17,7 @@ public class ProductCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name = "id")
-    private Long id;
+    private int id;
     // 类别名
     private String productCategoryName;
     // 权重，越大越排前显示
@@ -25,11 +25,11 @@ public class ProductCategory {
     // 创建时间
     private Date createTime;
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

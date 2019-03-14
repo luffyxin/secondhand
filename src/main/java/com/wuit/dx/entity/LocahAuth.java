@@ -17,21 +17,17 @@ public class LocahAuth {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private int id;
     // 帐号
     private String username;
     // 密码
     private String password;
-    // 创建时间
-    private Date createTime;
-    // 最近一次的更新时间
-    private Date lastEditTime;
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -51,20 +47,5 @@ public class LocahAuth {
         this.password = password;
     }
 
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Date getLastEditTime() {
-        return lastEditTime;
-    }
-
-    public void setLastEditTime(Date lastEditTime) {
-        this.lastEditTime = lastEditTime;
-    }
 
 }

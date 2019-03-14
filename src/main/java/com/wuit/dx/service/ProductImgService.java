@@ -11,5 +11,5 @@ import java.util.List;
  */
 public interface ProductImgService {
 
-    List<ProductImg> getProductImgByProduct(Long productId);
+    List<ProductImg> getProductImgByProduct(int productId);
 }

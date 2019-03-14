@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @since 2019/3/11 17:03
  */
 public interface ProductDAO extends JpaRepository<Product,Integer> {
-    Product findById(Long id);
+    Product findById(int id);
 }

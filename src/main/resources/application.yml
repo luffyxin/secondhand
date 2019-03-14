@@ -1,7 +1,7 @@
-spring:
-  datasource:
-    username: root
-    password: dengxin
-    url: jdbc:mysql://127.0.0.1:3306/secondhand?useSSL=false
-    driver-class-name: com.mysql.jdbc.Driver
+#spring:
+#  datasource:
+#    username: root
+#    password: dengxin
+#    url: jdbc:mysql://127.0.0.1:3306/secondhand?useSSL=false
+#    driver-class-name: com.mysql.jdbc.Driver
 

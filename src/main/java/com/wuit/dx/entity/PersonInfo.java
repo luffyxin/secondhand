@@ -17,7 +17,7 @@ public class PersonInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name = "id")
-    private Long id;
+    private int id;
     // 用户名称
     private String name;
     // 用户头像
@@ -36,10 +36,6 @@ public class PersonInfo {
     private Integer enableStatus;
     // 1.顾客 2.超级管理员
     private Integer userType;
-    // 创建时间
-    private Date createTime;
-    // 最近一次的更新时间
-    private Date lastEditTime;
     // 用户拥有的商品
     @Transient
     private List<Product> products;
@@ -48,6 +44,13 @@ public class PersonInfo {
     @JoinColumn(name = "id")
     private LocahAuth local_auth;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getTel() {
         return tel;
@@ -73,13 +76,6 @@ public class PersonInfo {
         this.local_auth = local_auth;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -127,22 +123,6 @@ public class PersonInfo {
 
     public void setUserType(Integer userType) {
         this.userType = userType;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Date getLastEditTime() {
-        return lastEditTime;
-    }
-
-    public void setLastEditTime(Date lastEditTime) {
-        this.lastEditTime = lastEditTime;
     }
 
     public List<Product> getProducts() {

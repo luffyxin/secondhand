@@ -19,7 +19,7 @@ public class ProductImgServiceImpl implements ProductImgService {
     private ProductImgDAO productImgDAO;
 
     @Override
-    public List<ProductImg> getProductImgByProduct(Long productId) {
+    public List<ProductImg> getProductImgByProduct(int productId) {
         return productImgDAO.findByProductId(productId);
     }
 }

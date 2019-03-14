@@ -17,7 +17,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private int id;
     // 商品名
     private String productName;
     // 商品简介
@@ -30,10 +30,6 @@ public class Product {
     private String promotionPrice;
     // 权重，越大越排前显示
     private Integer priority;
-    // 创建时间
-    private Date createTime;
-    // 最近一次的更新时间
-    private Date lastEditTime;
     // 0.下架 1.在前端展示系统展示
     private Integer enableStatus;
 
@@ -49,13 +45,6 @@ public class Product {
     @JoinColumn(name = "user_id")
     private PersonInfo personInfo;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getProductName() {
         return productName;
@@ -105,20 +94,12 @@ public class Product {
         this.priority = priority;
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public int getId() {
+        return id;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Date getLastEditTime() {
-        return lastEditTime;
-    }
-
-    public void setLastEditTime(Date lastEditTime) {
-        this.lastEditTime = lastEditTime;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Integer getEnableStatus() {

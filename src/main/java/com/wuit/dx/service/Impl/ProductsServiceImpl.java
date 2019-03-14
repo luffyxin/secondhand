@@ -38,7 +38,7 @@ public class ProductsServiceImpl implements ProductService {
     }
 
     @Override
-    public Product getProductById(Long id) {
+    public Product getProductById(int id) {
         Product p=productDAO.findById(id);
         if(p!=null){
             List<ProductImg> productImgs=productImgDAO.findByProductId(p.getId());

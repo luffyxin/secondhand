@@ -17,23 +17,21 @@ public class ProductImg {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    private int id;
     // 图片地址
     private String imgAddr;
     // 图片简介
     private String imgDesc;
     // 权重，越大越排前显示
     private Integer priority;
-    // 创建时间
-    private Date createTime;
     // 标明是属于哪个商品的图片
-    private Long productId;
+    private int productId;
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -61,19 +59,11 @@ public class ProductImg {
         this.priority = priority;
     }
 
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
-
-    public Long getProductId() {
+    public int getProductId() {
         return productId;
     }
 
-    public void setProductId(Long productId) {
+    public void setProductId(int productId) {
         this.productId = productId;
     }
 }

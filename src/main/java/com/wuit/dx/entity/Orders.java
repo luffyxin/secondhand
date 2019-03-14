@@ -27,11 +27,11 @@ public class Orders {
     /**
      * 买家id
      */
-    private Long buyerId;
+    private int buyerId;
     /**
      * 卖家id
      */
-    private Long sellerId;
+    private int sellerId;
 
     /**
      * 商品
@@ -79,20 +79,20 @@ public class Orders {
         this.orderNo = orderNo;
     }
 
-    public Long getBuyerId() {
-        return buyerId;
-    }
-
-    public void setBuyerId(Long buyerId) {
-        this.buyerId = buyerId;
-    }
-
-    public Long getSellerId() {
+    public int getSellerId() {
         return sellerId;
     }
 
-    public void setSellerId(Long sellerId) {
+    public void setSellerId(int sellerId) {
         this.sellerId = sellerId;
+    }
+
+    public int getBuyerId() {
+        return buyerId;
+    }
+
+    public void setBuyerId(int buyerId) {
+        this.buyerId = buyerId;
     }
 
     public Product getProduct() {

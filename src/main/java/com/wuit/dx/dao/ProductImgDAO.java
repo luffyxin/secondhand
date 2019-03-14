@@ -11,5 +11,5 @@ import java.util.List;
  * @since 2019/3/11 17:24
  */
 public interface ProductImgDAO extends JpaRepository<ProductImg,Integer> {
-    List<ProductImg> findByProductId(Long productId);
+    List<ProductImg> findByProductId(int productId);
 }

@@ -29,8 +29,6 @@ public class LocalAuthServiceImpl implements LocalAuthService {
 
     @Override
     public boolean registerAuth(LocahAuth localAuth) {
-        localAuth.setCreateTime(new Date());
-        localAuth.setLastEditTime(new Date());
         LocahAuth save = locahAuthDAO.save(localAuth);
         return save != null;
     }
