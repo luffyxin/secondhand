@@ -14,7 +14,7 @@ $(function () {
                 maxlength: 16 ,
                 remote: {
                     type: "post",
-                    url: "/nameverify",
+                    url: "/secondhand/nameverify",
                     data: {
                         username: function() {
                             return $("#username").val();
