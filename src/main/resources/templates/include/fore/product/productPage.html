@@ -4,7 +4,8 @@
             var pid = getUrlParms("pid");
             var data4Vue = {
                 uri:'foreproduct',
-                products:[]
+                products:[] ,
+                user:{username:'', password:''}
             };
             //ViewModel
             var vue = new Vue({
@@ -18,7 +19,9 @@
                         var url =  this.uri+"/"+pid;
                         axios.get(url).then(function(response) {
                             vue.products = response.data;
-
+                            vue.$nextTick(function(){
+                                imgAndInfoPageRegisterListeners(vue);
+                            })
                         });
                     }
                 }

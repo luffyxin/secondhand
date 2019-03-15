@@ -1,5 +1,51 @@
 <div th:fragment="html" xmlns:th="http://www.w3.org/1999/xhtml">
+<script>
+    function imgAndInfoPageRegisterListeners(vue){
+        $(".buyLink").click(function(){
+            var url = "forecheckLogin";
+            axios.get(url).then(function(response) {
+                if(0==response.data.code){
+                    var pid = vue.products.id;
+                    var url =  "forebuyone?pid="+pid;
+                    axios.get(url).then(function(response) {
+                        var oiid = response.data;
+                        location.href="buy?oiid="+oiid;
+                    });
+                }
+                else{
+                    $("#loginModal").modal('show');
+                }
+            });
+            return false;
+        });
 
+        $("button.loginSubmitButton").click(function(){
+            var url =  "forelogin";
+            if(0==vue.user.username.length){
+                $("span.errorMessage").html("请输入用户名");
+                $("div.loginErrorMessageDiv").css("visibility","visible");
+                return;
+            }
+            if(0==vue.user.password.length){
+                $("span.errorMessage").html("请输入密码");
+                $("div.loginErrorMessageDiv").css("visibility","visible");
+                return;
+            }
+
+            axios.post(url,vue.user).then(function(response) {
+                var result = response.data;
+                if(result.code==0){
+                    location.href="product?pid="+vue.products.id;
+                }
+                else{
+                    $("span.errorMessage").html(result.message);
+                    $("div.loginErrorMessageDiv").css("visibility","visible");
+                }
+            });
+        });
+
+    }
+</script>
     <div class="imgAndInfo">
         <div class="imgInimgAndInfo">
             <img v-if="products.imgAddr!=null" :src="'img/productSingle_middle/'+products.imgAddr+'.jpg'" class="bigImg">
