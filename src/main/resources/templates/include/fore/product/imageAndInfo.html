@@ -6,11 +6,8 @@
             axios.get(url).then(function(response) {
                 if(0==response.data.code){
                     var pid = vue.products.id;
-                    var url =  "forebuyone?pid="+pid;
-                    axios.get(url).then(function(response) {
-                        var oiid = response.data;
-                        location.href="buy?oiid="+oiid;
-                    });
+                    var url =  "buyone?pid="+pid;
+                    location.href=url;
                 }
                 else{
                     $("#loginModal").modal('show');

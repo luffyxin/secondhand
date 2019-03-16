@@ -1,0 +1,38 @@
+<div class="personinfo" th:fragment="html" xmlns:th="http://www.w3.org/1999/xhtml">
+    <form>
+        <div class="form-group">
+            <label for="name">名称</label>
+            <input type="text" v-model="personinfo.name" class="form-control" id="name" name="name" placeholder="名称">
+        </div>
+        <div class="form-group">
+            <label for="profileImg">选择头像</label>
+            <input type="file" id="profileImg">
+        </div>
+        <div class="form-group">
+            <label for="Email1">邮箱</label>
+            <input type="email" v-model="personinfo.email" class="form-control" id="Email1" name="email" placeholder="Email">
+        </div>
+        <div class="radio">
+            <label>
+                <input type="radio" v-model="personinfo.gender" name="gender" id="man" value="男" checked>
+                男
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                <input type="radio" v-model="personinfo.gender" name="gender" id="woman" value="女">
+                女
+            </label>
+        </div>
+        <div class="form-group">
+            <label for="tel">联系电话</label>
+            <input type="tel" v-model="personinfo.tel" class="form-control" id="tel" name="tel" placeholder="电话">
+        </div>
+        <div class="form-group">
+            <label for="address">地址</label>
+            <input type="text" v-model="personinfo.address" class="form-control" id="address" name="address" placeholder="地址">
+        </div>
+
+        <button type="submit" class="btn btn-default">保存</button>
+    </form>
+</div>

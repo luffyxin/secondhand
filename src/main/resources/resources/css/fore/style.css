@@ -1378,7 +1378,14 @@ button.submitOrderButton {
 div.aliPayPageLogo {
 	margin: 20px;
 }
-
+div.personnav{
+	float: left;
+	margin: 150px;
+}
+div.personinfo{
+	float: left;
+	margin: 150px;
+}
 div.aliPayPageDiv {
 	text-align: center;
 	padding-bottom: 40px;

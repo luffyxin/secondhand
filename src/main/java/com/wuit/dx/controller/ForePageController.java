@@ -31,4 +31,14 @@ public class ForePageController {
     public String product(){
         return "fore/product";
     }
+
+    @GetMapping("/buyone")
+    public String buy(){
+        return "fore/buy";
+    }
+
+    @GetMapping("/personcenter")
+    public String center(){
+        return "fore/personcenter";
+    }
 }

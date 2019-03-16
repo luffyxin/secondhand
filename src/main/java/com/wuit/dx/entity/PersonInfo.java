@@ -41,8 +41,8 @@ public class PersonInfo {
     private List<Product> products;
     // 属于哪个账号
     @OneToOne
-    @JoinColumn(name = "id")
-    private LocahAuth local_auth;
+    @JoinColumn (name = "local_auth_id")
+    private LocahAuth localAuth;
 
     public int getId() {
         return id;
@@ -68,14 +68,13 @@ public class PersonInfo {
         this.address = address;
     }
 
-    public LocahAuth getLocal_auth() {
-        return local_auth;
+    public LocahAuth getLocalAuth() {
+        return localAuth;
     }
 
-    public void setLocal_auth(LocahAuth local_auth) {
-        this.local_auth = local_auth;
+    public void setLocalAuth(LocahAuth localAuth) {
+        this.localAuth = localAuth;
     }
-
 
     public String getName() {
         return name;

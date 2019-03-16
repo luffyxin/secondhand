@@ -1,7 +1,9 @@
 package com.wuit.dx.service.Impl;
 
 import com.wuit.dx.dao.LocahAuthDAO;
+import com.wuit.dx.dao.PersonInfoDAO;
 import com.wuit.dx.entity.LocahAuth;
+import com.wuit.dx.entity.PersonInfo;
 import com.wuit.dx.service.LocalAuthService;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,9 @@ public class LocalAuthServiceImpl implements LocalAuthService {
     @Resource
     private LocahAuthDAO locahAuthDAO;
 
+    @Resource
+    private PersonInfoDAO personInfoDAO;
+
     @Override
     public boolean isNameExists(String name) {
         LocahAuth locahAuth = locahAuthDAO.findByUsername(name);
@@ -30,6 +35,9 @@ public class LocalAuthServiceImpl implements LocalAuthService {
     @Override
     public boolean registerAuth(LocahAuth localAuth) {
         LocahAuth save = locahAuthDAO.save(localAuth);
+        PersonInfo p=new PersonInfo();
+        p.setLocalAuth(save);
+        PersonInfo psave= personInfoDAO.save(p);
         return save != null;
     }
 

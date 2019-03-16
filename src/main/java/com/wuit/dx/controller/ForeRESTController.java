@@ -1,17 +1,16 @@
 package com.wuit.dx.controller;
 
 import com.wuit.dx.dao.ProductDAO;
-import com.wuit.dx.entity.LocahAuth;
-import com.wuit.dx.entity.Product;
-import com.wuit.dx.entity.ProductCategory;
-import com.wuit.dx.service.LocalAuthService;
-import com.wuit.dx.service.ProductCategoryService;
-import com.wuit.dx.service.ProductService;
+import com.wuit.dx.entity.*;
+import com.wuit.dx.service.*;
 import com.wuit.dx.util.Result;
+import org.apache.commons.lang.math.RandomUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -29,6 +28,12 @@ public class ForeRESTController {
 
     @Resource
     private LocalAuthService localAuthService;
+
+    @Resource
+    private PersonInfoService personInfoService;
+
+    @Resource
+    private OrdersService ordersService;
 
     @GetMapping("/forehome")
     public Object home(){
@@ -73,6 +78,22 @@ public class ForeRESTController {
             return Result.success();
         }
     }
+    @PostMapping("forecreateOrder")
+    public void createOrder(@RequestBody Orders orders,HttpSession session){
+        LocahAuth auth= (LocahAuth) session.getAttribute("user");
+        orders.setBuyerId(auth.getId());
+        String orderNo = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()) + RandomUtils.nextInt(10000);
+        orders.setOrderNo(orderNo);
+        orders.setCreateDate(new Date());
+        orders.setStatus(0);
+        ordersService.createOrder(orders);
+    }
 
+    @GetMapping("foreperson")
+    public Object getPersonInfo(HttpSession session){
+        LocahAuth auth = (LocahAuth) session.getAttribute("user");
+        PersonInfo p = personInfoService.findbyLocalAuth(auth);
+        return p;
+    }
 
 }
