@@ -21,4 +21,9 @@ public class PersonInfoServiceImpl implements PersonInfoService {
     public PersonInfo findbyLocalAuth(LocahAuth locahAuth) {
         return personInfoDAO.findByLocalAuth(locahAuth);
     }
+
+    @Override
+    public PersonInfo savePersonInfo(PersonInfo personInfo) {
+        return personInfoDAO.save(personInfo);
+    }
 }

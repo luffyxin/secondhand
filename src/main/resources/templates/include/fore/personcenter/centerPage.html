@@ -3,7 +3,9 @@
         $(function(){
             var data4Vue = {
                 uri:'foreperson',
-                personinfo : []
+                uri2:'personinfoes',
+                personinfo : [] ,
+                file : null
 
             };
             //ViewModel
@@ -19,6 +21,23 @@
                         axios.get(url).then(function(response) {
                             vue.personinfo = response.data;
                         });
+                    },
+                    add:function () {
+                        var url=this.uri2;
+                        var formData=new FormData();
+                        formData.append("profileImg",this.file);
+                        formData.append("personinfo",this.personinfo.id);
+                        formData.append("personinfo",this.personinfo.name);
+                        formData.append("personinfo",this.personinfo.email);
+                        formData.append("personinfo",this.personinfo.gender);
+                        formData.append("personinfo",this.personinfo.tel);
+                        formData.append("personinfo",this.personinfo.address);
+                        axios.post(url,formData).then(function (response) {
+                            vue.file = null;
+                        });
+                    },
+                    getFile: function (event) {
+                        this.file = event.target.files[0];
                     }
                 }
             });

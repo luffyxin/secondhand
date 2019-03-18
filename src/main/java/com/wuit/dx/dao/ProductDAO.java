@@ -1,7 +1,10 @@
 package com.wuit.dx.dao;
 
+import com.wuit.dx.entity.PersonInfo;
 import com.wuit.dx.entity.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
 
 /**
  * @author dx
@@ -9,4 +12,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface ProductDAO extends JpaRepository<Product,Integer> {
     Product findById(int id);
+
+    List<Product> findByPersonInfo(PersonInfo personInfo);
 }

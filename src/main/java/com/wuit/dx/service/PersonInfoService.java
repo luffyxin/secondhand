@@ -9,4 +9,6 @@ import com.wuit.dx.entity.PersonInfo;
  */
 public interface PersonInfoService {
     PersonInfo findbyLocalAuth(LocahAuth locahAuth);
+
+    PersonInfo savePersonInfo(PersonInfo personInfo);
 }

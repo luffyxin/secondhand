@@ -1,16 +1,24 @@
 package com.wuit.dx.controller;
 
 import com.wuit.dx.entity.LocahAuth;
+import com.wuit.dx.entity.PersonInfo;
 import com.wuit.dx.service.LocalAuthService;
+import com.wuit.dx.service.PersonInfoService;
+import com.wuit.dx.util.ImageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ResourceUtils;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,6 +31,9 @@ public class PersonController {
 
     @Resource
     private LocalAuthService localAuthService;
+
+    @Resource
+    private PersonInfoService personInfoService;
 
     @ResponseBody
     @RequestMapping("/nameverify")
@@ -74,5 +85,42 @@ public class PersonController {
         bis.close();
         return "redirect:/";
     }
+
+    @ResponseBody
+    @PostMapping("/personinfoes")
+    public Object savePersonInfo( MultipartFile profileImg,String []  personinfo, HttpServletRequest request)throws Exception{
+        PersonInfo p=new PersonInfo();
+        p.setId(Integer.valueOf(personinfo[0]));
+        p.setName(personinfo[1]);
+        p.setEmail(personinfo[2]);
+        p.setGender(personinfo[3]);
+        p.setTel(personinfo[4]);
+        p.setAddress(personinfo[5]);
+        p.setProfileImg(p.getName()+"profileImg");
+        PersonInfo p2=new PersonInfo();
+         LocahAuth locahAuth=   (LocahAuth)request.getSession().getAttribute("user");
+         p2=personInfoService.findbyLocalAuth(locahAuth);
+        p.setEnableStatus(p2.getEnableStatus());
+        p.setLocalAuth(p2.getLocalAuth());
+        p.setUserType(p2.getUserType());
+        personInfoService.savePersonInfo(p);
+        saveOrUpdateImageFile(p,profileImg,request);
+        return p;
+    }
+
+    public void saveOrUpdateImageFile(PersonInfo bean, MultipartFile image, HttpServletRequest request)
+            throws IOException {
+       File f1= ResourceUtils.getFile("classpath:resources");
+        File imageFolder= new File(request.getSession().getServletContext().getRealPath("img/profileImg"));
+        File file = new File(imageFolder,bean.getName()+"profileImg"+".jpg");
+        if(!file.getParentFile().exists()){
+            file.getParentFile().mkdirs();
+        }
+        image.transferTo(file);
+        BufferedImage img = ImageUtil.change2jpg(file);
+        ImageIO.write(img, "jpg", file);
+    }
+
+
 
 }
