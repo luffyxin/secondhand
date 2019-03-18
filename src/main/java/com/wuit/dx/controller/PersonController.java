@@ -20,6 +20,7 @@ import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -110,16 +111,17 @@ public class PersonController {
 
     public void saveOrUpdateImageFile(PersonInfo bean, MultipartFile image, HttpServletRequest request)
             throws IOException {
-       File f1= ResourceUtils.getFile("classpath:resources");
-        File imageFolder= new File(request.getSession().getServletContext().getRealPath("img/profileImg"));
-        File file = new File(imageFolder,bean.getName()+"profileImg"+".jpg");
+        File imageFolder=new File(request.getServletContext().getRealPath("img/profileImg"));
+        File file=new File(imageFolder,bean.getName()+"profileImg"+".jpg");
         if(!file.getParentFile().exists()){
-            file.getParentFile().mkdirs();
+            file.getParentFile().mkdir();
         }
         image.transferTo(file);
-        BufferedImage img = ImageUtil.change2jpg(file);
-        ImageIO.write(img, "jpg", file);
+        BufferedImage img= ImageUtil.change2jpg(file);
+        ImageIO.write(img,"jpg",file);
     }
+
+
 
 
 
