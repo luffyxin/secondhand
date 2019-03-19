@@ -1,13 +1,15 @@
 <div class="personinfo" th:fragment="html" xmlns:th="http://www.w3.org/1999/xhtml">
     <form>
+        <img  style="width: 100px;	height: 100px;" :src="'img/profileImg/'+ personinfo.profileImg +'.jpg'" >
+        <div class="form-group">
+            <label for="profileImg">选择头像</label>
+            <input class="img-thumbnail" type="file" accept="image/*" name="profileImg" @change ="getFile($event)"  id="profileImg">
+        </div>
         <div class="form-group">
             <label for="name">名称</label>
             <input type="text" v-model="personinfo.name" class="form-control" id="name" name="name" placeholder="名称">
         </div>
-        <div class="form-group">
-            <label for="profileImg">选择头像</label>
-            <input type="file" accept="image/*" name="profileImg" @change ="getFile($event)"  id="profileImg">
-        </div>
+
         <div class="form-group">
             <label for="Email1">邮箱</label>
             <input type="email" v-model="personinfo.email" class="form-control" id="Email1" name="email" placeholder="Email">

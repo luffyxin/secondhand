@@ -97,10 +97,9 @@ public class PersonController {
         p.setGender(personinfo[3]);
         p.setTel(personinfo[4]);
         p.setAddress(personinfo[5]);
-        p.setProfileImg(p.getName()+"profileImg");
-        PersonInfo p2=new PersonInfo();
-         LocahAuth locahAuth=   (LocahAuth)request.getSession().getAttribute("user");
-         p2=personInfoService.findbyLocalAuth(locahAuth);
+        LocahAuth locahAuth=   (LocahAuth)request.getSession().getAttribute("user");
+        p.setProfileImg(locahAuth.getUsername()+"profileImg");
+        PersonInfo   p2=personInfoService.findbyLocalAuth(locahAuth);
         p.setEnableStatus(p2.getEnableStatus());
         p.setLocalAuth(p2.getLocalAuth());
         p.setUserType(p2.getUserType());
@@ -112,7 +111,7 @@ public class PersonController {
     public void saveOrUpdateImageFile(PersonInfo bean, MultipartFile image, HttpServletRequest request)
             throws IOException {
         File imageFolder=new File(request.getServletContext().getRealPath("img/profileImg"));
-        File file=new File(imageFolder,bean.getName()+"profileImg"+".jpg");
+        File file=new File(imageFolder,bean.getLocalAuth().getUsername()+"profileImg"+".jpg");
         if(!file.getParentFile().exists()){
             file.getParentFile().mkdir();
         }

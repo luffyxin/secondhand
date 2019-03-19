@@ -33,6 +33,7 @@
                         formData.append("personinfo",this.personinfo.tel);
                         formData.append("personinfo",this.personinfo.address);
                         axios.post(url,formData).then(function (response) {
+                            vue.personinfo = response.data;
                             vue.file = null;
                         });
                     },
