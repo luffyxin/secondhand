@@ -41,4 +41,9 @@ public class ForePageController {
     public String center(){
         return "fore/personcenter";
     }
+
+    @GetMapping("/mybuy")
+    public String mybuy(){
+        return "fore/mybuy";
+    }
 }

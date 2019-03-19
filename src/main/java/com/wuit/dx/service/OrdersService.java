@@ -1,6 +1,9 @@
 package com.wuit.dx.service;
 
 import com.wuit.dx.entity.Orders;
+import com.wuit.dx.util.Page4Navigator;
+
+import java.util.List;
 
 /**
  * @author dx
@@ -9,4 +12,6 @@ import com.wuit.dx.entity.Orders;
 public interface OrdersService {
 
     Orders createOrder(Orders orders);
+
+    Page4Navigator<Orders> getOrderBybuyer(int buyerid,int start,int size,int navigatePages);
 }

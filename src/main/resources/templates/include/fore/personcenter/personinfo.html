@@ -1,5 +1,5 @@
-<div class="personinfo" th:fragment="html" xmlns:th="http://www.w3.org/1999/xhtml">
-    <form>
+<div class="personinforight" th:fragment="html" xmlns:th="http://www.w3.org/1999/xhtml">
+    <form style="width: 400px">
         <img  style="width: 100px;	height: 100px;" :src="'img/profileImg/'+ personinfo.profileImg +'.jpg'" >
         <div class="form-group">
             <label for="profileImg">选择头像</label>
@@ -16,7 +16,7 @@
         </div>
         <div class="radio">
             <label>
-                <input type="radio" v-model="personinfo.gender" name="gender" id="man" value="男" checked>
+                <input  type="radio" v-model="personinfo.gender" name="gender" id="man" value="男" checked>
                 男
             </label>
         </div>

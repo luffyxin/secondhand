@@ -1,8 +1,8 @@
-<div class="personnav" th:fragment="html" xmlns:th="http://www.w3.org/1999/xhtml" >
+<div  class="personnav" th:fragment="html" xmlns:th="http://www.w3.org/1999/xhtml" >
 
-    <ul class="nav nav-pills nav-stacked ">
-        <li role="presentation" th:class="${activeUri== 'personinfo'?'active':''}"><a href="#">个人信息管理</a></li>
-        <li role="presentation" th:class="${activeUri== 'buy'?'active':''}"><a href="#">我购买到的二手宝贝</a></li>
+    <ul  class="nav nav-pills nav-stacked ">
+        <li role="presentation" th:class="${activeUri== 'personinfo'?'active':''}"><a href="personcenter">个人信息管理</a></li>
+        <li role="presentation" th:class="${activeUri== 'buy'?'active':''}"><a href="mybuy">我购买到的二手宝贝</a></li>
         <li role="presentation" th:class="${activeUri== 'sell'?'active':''}"><a href="#">我卖出的二手宝贝</a></li>
         <li role="presentation" th:class="${activeUri== 'publish'?'active':''}"><a href="#">我发布的二手宝贝</a></li>
         <li role="presentation" th:class="${activeUri== 'password'?'active':''}"><a href="#">修改密码</a></li>

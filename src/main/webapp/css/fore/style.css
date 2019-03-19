@@ -1380,11 +1380,12 @@ div.aliPayPageLogo {
 }
 div.personnav{
 	float: left;
-	margin: 150px;
+	margin: 150px 100px 0px 100px;
 }
-div.personinfo{
+div.personinforight{
 	float: left;
-	margin: 150px;
+	margin: 150px 0px 0px 0px;
+
 }
 div.aliPayPageDiv {
 	text-align: center;

@@ -1,0 +1,51 @@
+<div class="personinforight" th:fragment="html" xmlns:th="http://www.w3.org/1999/xhtml">
+    <table class="table text-primary bg-warning">
+        <thead >
+        <tr>
+            <th colspan="2">宝贝</th>
+            <th>价格</th>
+            <th>交易地点</th>
+            <th>交易操作</th>
+        </tr>
+        </thead>
+        <tbody v-for = "o in orders">
+        <div >
+            <tr class="bg-info" >
+                <td>购买日期：{{o.createDate | formatDateFilter("YYYY-MM-DD")}}</td>
+                <td>订单号：{{o.orderNo}}</td>
+                <td>卖家：{{o.product.personInfo.name}}</td>
+                <td></td>
+                <td>电话：{{o.product.personInfo.tel}}</td>
+            </tr>
+            <tr>
+                <td>
+                    <img style="width: 100px;height: 100px" :src="'img/productSingle_middle/'+o.product.imgAddr+'.jpg'">
+                </td>
+                <td>
+                    <span>
+                        宝贝名：{{o.product.productName}}
+                    </span>
+                    <br>
+                    <span>
+                        简介：{{o.product.productDesc}}
+                    </span>
+                </td>
+                <td>
+                    <span class="productPrice">
+                        {{o.product.promotionPrice | formatMoneyFilter}}
+                    </span>
+                </td>
+                <td>
+                    <span>
+                        {{o.address}}
+                    </span>
+                </td>
+                <td>
+                    <button class="btn bg-primary" >{{o.status | statusFilter}}</button>
+                </td>
+            </tr>
+        </div>
+        </tbody>
+    </table>
+    <div th:replace="include/admin/adminPage::html" ></div>
+</div>
