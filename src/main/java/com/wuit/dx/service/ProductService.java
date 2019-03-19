@@ -13,4 +13,6 @@ public interface ProductService {
     List<Product> getAllProducts();
 
     Product getProductById(int id);
+
+    Product sellProduct(int id);
 }

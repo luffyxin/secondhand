@@ -3,7 +3,10 @@ package com.wuit.dx.service.Impl;
 import com.wuit.dx.dao.OrdersDAO;
 import com.wuit.dx.dao.ProductDAO;
 import com.wuit.dx.entity.Orders;
+import com.wuit.dx.entity.Product;
 import com.wuit.dx.service.OrdersService;
+import com.wuit.dx.service.ProductImgService;
+import com.wuit.dx.service.ProductService;
 import com.wuit.dx.util.Page4Navigator;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -26,10 +29,15 @@ public class OrderServiceImpl implements OrdersService {
     private OrdersDAO ordersDAO;
 
     @Resource
+    private ProductService productService;
+
+    @Resource
     private ProductDAO productDAO;
 
     @Override
     public Orders createOrder(Orders orders) {
+        Product p=productService.sellProduct(orders.getProduct().getId());
+        orders.setProduct(p);
         return ordersDAO.save(orders);
     }
 

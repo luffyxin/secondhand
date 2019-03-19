@@ -28,7 +28,7 @@ public class ProductsServiceImpl implements ProductService {
     private ProductImgDAO productImgDAO;
     @Override
     public List<Product> getAllProducts() {
-        List<Product> products = productDAO.findAll();
+        List<Product> products = productDAO.findAllByEnableStatus(1);
         for (Product p : products) {
             if (p.getPersonInfo() != null) {
                 p.setPersonInfo(personInfoDAO.findById(p.getPersonInfo().getId()));
@@ -48,5 +48,12 @@ public class ProductsServiceImpl implements ProductService {
             }
         }
         return p;
+    }
+
+    @Override
+    public Product sellProduct(int id) {
+        Product p=productDAO.findById(id);
+        p.setEnableStatus(0);
+        return  productDAO.save(p);
     }
 }
