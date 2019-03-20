@@ -1,0 +1,68 @@
+<div class="personinforight col-sm-6" th:fragment="html" xmlns:th="http://www.w3.org/1999/xhtml">
+    <form >
+        <div class="form-group">
+            <label for="productName">宝贝名称</label>
+            <input type="text" v-model="product.productName" class="form-control" id="productName" name="productName" placeholder="宝贝名称">
+        </div>
+        <div class="form-group">
+            <label for="productCategory">宝贝分类</label>
+            <select class="form-control" id="productCategory" v-model="category">
+                <option v-for="c in categories" :value="c.productCategoryName">{{c.productCategoryName}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="productDesc">宝贝简介</label>
+            <textarea v-model="product.productDesc" class="form-control" id="productDesc" name="productDesc"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="normalPrice">原价</label>
+            <input type="" v-model="product.normalPrice" class="form-control" id="normalPrice" name="normalPrice" placeholder="原价">
+        </div>
+        <div class="form-group">
+            <label for="promotionPrice">二手价</label>
+            <input type="" v-model="product.promotionPrice" class="form-control" id="promotionPrice" name="promotionPrice" placeholder="二手价">
+        </div>
+
+    </form>
+    <div class="input-file-box" style="margin: 20px">
+        <span>点击上传宝贝主图片</span>
+        <input type="file" accept="image/*" @change ="getProImg($event)"  class="uploadfile" >
+    </div>
+    <table>
+        <tr>
+            <td style="white-space: nowrap;">
+                <img :src="productImg"  style="width: 200px;">
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">
+
+                <button v-if="productImg" type="button" @click="clearImg" class="btn btn-danger" aria-label="Left Align">
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                </button>
+            </td>
+        </tr>
+    </table>
+    <div class="input-file-box" style="margin: 20px">
+        <span>点击上传宝贝详情图片</span>
+        <input type="file" accept="image/*" @change ="getProDetailImgs($event)"  class="uploadfile" >
+    </div>
+    <table v-for="img,index in productDetailImgs" class="col-md-3">
+        <tr>
+            <td style="white-space: nowrap;">
+                <img :src="img" style="width: 200px" >
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">
+                <button type="button" @click="clearImgs(index)" class="btn btn-danger" aria-label="Left Align">
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                </button>
+            </td>
+        </tr>
+    </table>
+    <div  style="margin: 40px" class="col-md-12">
+        <button @click="add" class="btn btn-primary btn-lg">发布</button>
+    </div>
+
+</div>

@@ -1379,11 +1379,9 @@ div.aliPayPageLogo {
 	margin: 20px;
 }
 div.personnav{
-	float: left;
-	margin: 150px 100px 0px 100px;
+	margin: 150px 100px 0px 50px;
 }
 div.personinforight{
-	float: left;
 	margin: 150px 0px 0px 0px;
 
 }
@@ -2319,5 +2317,34 @@ table td{
 }
 input{
 	outline: none;
+}
+/*外层div*/
+.input-file-box{
+	border: 1px solid gray;
+	width: 150px;
+	height: 50px;
+	position: relative;
+	text-align: center;
+	border-radius: 8px;
+}
+/*文字描述*/
+.input-file-box > span{
+	display: block;
+	width: 100px;
+	height: 30px;
+	position: absolute;
+	top: 0px;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	color: gray;
+}
+/*input框*/
+.uploadfile{
+	opacity: 0;
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
 }
 

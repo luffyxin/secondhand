@@ -46,4 +46,9 @@ public class ForePageController {
     public String mybuy(){
         return "fore/mybuy";
     }
+
+    @GetMapping("/publish")
+    public String publish(){
+        return "fore/publish";
+    }
 }

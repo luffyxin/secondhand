@@ -2,31 +2,79 @@
     <script>
         $(function(){
             var data4Vue = {
-                uri:'orders',
-                pagination:{},
-                orders : []
+                uriPro:'products',
+                uriCate:'forehome',
+                productDetailImgs:[],
+                productImg : null,
+                productDetailImgsFiles:[],
+                productImgFile:null,
+                product : [],
+                category:null,
+                categories : []
             };
             //ViewModel
             var vue = new Vue({
                 el: '#workingArea',
                 data: data4Vue,
                 mounted:function(){ //mounted　表示这个 Vue 对象加载成功了
-                    this.list(0);
+                    this.load();
                 },
                 methods: {
-                    list:function(start){
-                        var url =  this.uri + "?start="+start;
+                    load:function(){
+                        var url =  this.uriCate;
                         axios.get(url).then(function(response) {
-                            vue.pagination =response.data;
-                            vue.orders = response.data.content;
+                            vue.categories =response.data;
                         });
+                    },
+                    add:function(){
+                        var url=this.uriPro;
+                        var formData=new FormData();
+
+                        for(var i=0;i<this.productDetailImgsFiles.length;i++){
+                            formData.append("productDetailImgsFiles",this.productDetailImgsFiles[i]);
+                        }
+                        formData.append("productImgFile",this.productImgFile);
+                        formData.append("category",this.category);
+                        formData.append("product",this.product.productName);
+                        formData.append("product",this.product.productDesc);
+                        formData.append("product",this.product.normalPrice);
+                        formData.append("product",this.product.promotionPrice);
+                        axios.post(url,formData).then(function (response) {
+                                this.product = response.data;
+                                location.href="product?pid="+this.product.id;
+                        });
+                    },
+                    getProImg: function (event) {
+                        vue.productImgFile = event.target.files[0];
+                        var reader= new FileReader();
+                        reader.readAsDataURL(this.productImgFile);
+                        reader.onload=function (e) {
+                            vue.productImg=this.result;
+                        }
+                    },
+                    getProDetailImgs:function (event) {
+                        vue.productDetailImgsFiles.push(event.target.files[0]);
+                        var reader= new FileReader();
+                        reader.readAsDataURL(event.target.files[0]);
+                        reader.onload=function (e) {
+                            vue.productDetailImgs.push(this.result);
+                        }
+
+                    },
+                    clearImg:function () {
+                        vue.productImgFile=null;
+                        vue.productImg =null;
+                    },
+                    clearImgs:function (index) {
+                        vue.productDetailImgs.splice(index,1);
+                        vue.productDetailImgsFiles.splice(index,1);
                     }
                 }
             });
         });
     </script>
-    <div class="homepageDiv">
+    <div class=" row">
         <div  th:replace="include/fore/personcenter/nav::html(activeUri='publish')" ></div>
-        <div th:replace="include/fore/personcenter/orderList::html" ></div>
+        <div th:replace="include/fore/personcenter/productDetail::html" ></div>
     </div>
 </div>
