@@ -104,24 +104,8 @@ public class PersonController {
         p.setLocalAuth(p2.getLocalAuth());
         p.setUserType(p2.getUserType());
         personInfoService.savePersonInfo(p);
-        saveOrUpdateImageFile(p,profileImg,request);
+        ImageUtil imageUtil=new ImageUtil();
+        imageUtil.saveOrUpdateImageFile("img/profileImg",p.getLocalAuth().getUsername(),profileImg,request);
         return p;
     }
-
-    public void saveOrUpdateImageFile(PersonInfo bean, MultipartFile image, HttpServletRequest request)
-            throws IOException {
-        File imageFolder=new File(request.getServletContext().getRealPath("img/profileImg"));
-        File file=new File(imageFolder,bean.getLocalAuth().getUsername()+"profileImg"+".jpg");
-        if(!file.getParentFile().exists()){
-            file.getParentFile().mkdir();
-        }
-        image.transferTo(file);
-        BufferedImage img= ImageUtil.change2jpg(file);
-        ImageIO.write(img,"jpg",file);
-    }
-
-
-
-
-
 }

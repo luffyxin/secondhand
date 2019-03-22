@@ -56,4 +56,9 @@ public class ProductsServiceImpl implements ProductService {
         p.setEnableStatus(0);
         return  productDAO.save(p);
     }
+
+    @Override
+    public Product saveProduct(Product product) {
+        return productDAO.save(product);
+    }
 }

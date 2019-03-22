@@ -15,4 +15,6 @@ public interface ProductService {
     Product getProductById(int id);
 
     Product sellProduct(int id);
+
+    Product saveProduct(Product product);
 }

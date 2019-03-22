@@ -1,10 +1,16 @@
 package com.wuit.dx.util;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
 import java.awt.*;
 import java.awt.image.*;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
 
 /**
  * @author dx
@@ -58,4 +64,34 @@ public class ImageUtil {
         }
         return null;
     }
+
+    public static void saveOrUpdateImageFile(String path, String name, MultipartFile image, HttpServletRequest request)
+            throws IOException {
+        File imageFolder=new File(request.getServletContext().getRealPath(path));
+        File file=new File(imageFolder,name+".jpg");
+        if(!file.getParentFile().exists()){
+            file.getParentFile().mkdir();
+        }
+        image.transferTo(file);
+        BufferedImage img= ImageUtil.change2jpg(file);
+        ImageIO.write(img,"jpg",file);
+    }
+    // 随机文件名
+    public static String getRandomFileName() {
+
+        SimpleDateFormat simpleDateFormat;
+
+        simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+
+        Date date = new Date();
+
+        String str = simpleDateFormat.format(date);
+
+        Random random = new Random();
+        // 获取5位随机数
+        int rannum = (int) (random.nextDouble() * (99999 - 10000 + 1)) + 10000;
+        // 当前时间
+        return rannum + str;
+    }
+
 }

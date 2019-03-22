@@ -21,4 +21,9 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
     public List<ProductCategory> getAllProCate() {
         return productCategoryDAO.findAll();
     }
+
+    @Override
+    public ProductCategory getProCateByName(String name) {
+        return productCategoryDAO.findByProductCategoryName(name);
+    }
 }

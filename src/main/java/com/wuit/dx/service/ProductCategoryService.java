@@ -11,4 +11,6 @@ import java.util.List;
 public interface ProductCategoryService {
 
     List<ProductCategory> getAllProCate();
+
+    ProductCategory getProCateByName(String name);
 }
