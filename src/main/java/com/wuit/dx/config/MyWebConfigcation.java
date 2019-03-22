@@ -1,6 +1,9 @@
 package com.wuit.dx.config;
 
+import com.wuit.dx.interceptor.LoginInterceptor;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
@@ -16,5 +19,16 @@ public class MyWebConfigcation extends WebMvcConfigurerAdapter {
         registry.addViewController("index.html").setViewName("index");
         registry.addViewController("/register").setViewName("register");
         registry.addViewController("/login").setViewName("login");
+    }
+
+    @Bean
+    public LoginInterceptor getLoginIntercepter() {
+        return new LoginInterceptor();
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry){
+        registry.addInterceptor(getLoginIntercepter())
+                .addPathPatterns("/**");
     }
 }
