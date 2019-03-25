@@ -2,6 +2,8 @@ package com.wuit.dx.dao;
 
 import com.wuit.dx.entity.PersonInfo;
 import com.wuit.dx.entity.Product;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -13,7 +15,7 @@ import java.util.List;
 public interface ProductDAO extends JpaRepository<Product,Integer> {
     Product findById(int id);
 
-    List<Product> findAllByEnableStatus(int enableStatus);
+    Page<Product> findAllByEnableStatus(int enableStatus,Pageable pageable);
 
-    List<Product> findByPersonInfo(PersonInfo personInfo);
+    Page<Product> findAllByEnableStatusAndPersonInfo(int enableStatus, PersonInfo personInfo, Pageable pageable);
 }

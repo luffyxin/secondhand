@@ -56,4 +56,9 @@ public class ForePageController {
     public String myOrder(){
         return "fore/myOrder";
     }
+
+    @GetMapping("/myPublish")
+    public String myPublish(){
+        return "fore/myPublish";
+    }
 }

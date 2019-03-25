@@ -256,6 +256,12 @@ div.homepageCategoryProducts {
 	margin: 10px auto;
 	max-width: 1013px;
 }
+div.myPublishList {
+	background-color: #F5F5F5;
+	padding: 50px 10px 50px 10px;
+	margin: 150px auto;
+	max-width: 1013px;
+}
 
 div.left-mark {
 	display: inline-block;

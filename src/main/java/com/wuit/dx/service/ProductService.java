@@ -1,6 +1,9 @@
 package com.wuit.dx.service;
 
+import com.wuit.dx.entity.PersonInfo;
 import com.wuit.dx.entity.Product;
+import com.wuit.dx.util.Page4Navigator;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -10,11 +13,13 @@ import java.util.List;
  */
 public interface ProductService {
 
-    List<Product> getAllProducts();
+    Page4Navigator<Product> getAllProducts(int start,int size,int navigatePages);
 
     Product getProductById(int id);
 
     Product sellProduct(int id);
 
     Product saveProduct(Product product);
+
+    Page4Navigator<Product> getProductByPerson(PersonInfo personInfo,int start,int size,int navigatePages);
 }

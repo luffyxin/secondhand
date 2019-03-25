@@ -2,15 +2,16 @@ package com.wuit.dx.controller;
 
 import com.wuit.dx.entity.*;
 import com.wuit.dx.service.*;
+import com.wuit.dx.util.Page4Navigator;
 import com.wuit.dx.util.Result;
 import org.apache.commons.lang.math.RandomUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author dx
@@ -40,8 +41,13 @@ public class ForeRESTController {
     }
 
     @GetMapping("/products")
-    public Object products(){
-        return  productService.getAllProducts();
+    public Map<String, Object> products(@RequestParam(value = "start", defaultValue = "0") int start,
+                           @RequestParam(value = "size", defaultValue = "5") int size,
+                           HttpServletRequest request)throws Exception {
+        Page4Navigator<Product> page = productService.getAllProducts(start, size, 5);
+        Map<String, Object> model = new HashMap<>();
+        model.put("page", page);
+        return model;
     }
 
     @GetMapping("/foreproduct/{pid}")

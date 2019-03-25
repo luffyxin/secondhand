@@ -1,5 +1,5 @@
-<div class="pageDiv pull-right" th:fragment="html" xmlns:th="http://www.w3.org/1999/xhtml">
-    <nav>
+<div class="pageDiv" th:fragment="html" xmlns:th="http://www.w3.org/1999/xhtml">
+    <nav style="text-align: center">
         <ul class="pagination">
             <li :class="{ disabled: pagination.first }">
                 <a  href="#nowhere" @click="jump('first')">«</a>

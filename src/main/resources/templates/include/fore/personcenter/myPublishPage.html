@@ -1,12 +1,8 @@
 <div th:fragment="html" xmlns:th="http://www.w3.org/1999/xhtml">
     <script>
-
-
         $(function(){
             var data4Vue = {
-                uri:'forehome',
-                urip: 'products',
-                categories: [],
+                uri:'myPublishes',
                 pagination:{},
                 products: []
             };
@@ -19,13 +15,8 @@
                 },
                 methods: {
                     list:function(start){
-                        var url =  this.uri;
+                        var url =  this.uri + "?start="+start;
                         axios.get(url).then(function(response) {
-                            vue.categories = response.data;
-                        });
-
-                        var urlp =  this.urip+ "?start="+start;
-                        axios.get(urlp).then(function(response) {
                             vue.pagination =response.data.page;
                             vue.products = response.data.page.content;
                         });
@@ -38,14 +29,10 @@
                     }
                 }
             });
-
         });
-
     </script>
-
-    <title>闲猪校园二手网</title>
     <div class="homepageDiv">
-        <div th:replace="include/fore/home/category::html" ></div>
-        <div th:replace="include/fore/home/productList::html"></div>
+        <div  th:replace="include/fore/personcenter/nav::html(activeUri='hasPublish')" ></div>
+        <div th:replace="include/fore/home/productList::html(list='myPublish')"></div>
     </div>
 </div>

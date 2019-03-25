@@ -3,10 +3,16 @@ package com.wuit.dx.service.Impl;
 import com.wuit.dx.dao.PersonInfoDAO;
 import com.wuit.dx.dao.ProductDAO;
 import com.wuit.dx.dao.ProductImgDAO;
+import com.wuit.dx.entity.Orders;
 import com.wuit.dx.entity.PersonInfo;
 import com.wuit.dx.entity.Product;
 import com.wuit.dx.entity.ProductImg;
 import com.wuit.dx.service.ProductService;
+import com.wuit.dx.util.Page4Navigator;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -27,9 +33,12 @@ public class ProductsServiceImpl implements ProductService {
     @Resource
     private ProductImgDAO productImgDAO;
     @Override
-    public List<Product> getAllProducts() {
-        List<Product> products = productDAO.findAllByEnableStatus(1);
-        for (Product p : products) {
+    public Page4Navigator<Product> getAllProducts(int start,int size,int navigatePages) {
+        Sort sort=new Sort(Sort.Direction.DESC,"id");
+        Pageable pageable=new PageRequest(start,size,sort);
+        Page<Product> pageFromJPA = productDAO.findAllByEnableStatus(1,pageable);
+        Page4Navigator<Product> products=new Page4Navigator<>(pageFromJPA,navigatePages);
+        for (Product p : products.getContent()) {
             if (p.getPersonInfo() != null) {
                 p.setPersonInfo(personInfoDAO.findById(p.getPersonInfo().getId()));
             }
@@ -60,5 +69,14 @@ public class ProductsServiceImpl implements ProductService {
     @Override
     public Product saveProduct(Product product) {
         return productDAO.save(product);
+    }
+
+    @Override
+    public Page4Navigator<Product> getProductByPerson(PersonInfo personInfo,int start,int size,int navigatePages) {
+        Sort sort=new Sort(Sort.Direction.DESC,"id");
+        Pageable pageable=new PageRequest(start,size,sort);
+        Page pageFromJPA= productDAO.findAllByEnableStatusAndPersonInfo(1,personInfo,pageable);
+        Page4Navigator<Product> products=new Page4Navigator<>(pageFromJPA,navigatePages);
+        return  products;
     }
 }
