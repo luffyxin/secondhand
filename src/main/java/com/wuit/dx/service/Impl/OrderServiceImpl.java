@@ -53,4 +53,17 @@ public class OrderServiceImpl implements OrdersService {
         }
         return  pageOrders;
     }
+
+    @Override
+    public Page4Navigator<Orders> getOrderByseller(int sellerid, int start, int size, int navigatePages) {
+        Sort sort=new Sort(Sort.Direction.DESC,"id");
+        Pageable pageable=new PageRequest(start,size,sort);
+        Page pageFromJPA= ordersDAO.findAllBySellerId(sellerid,pageable);
+        Page4Navigator<Orders> pageOrders=new Page4Navigator<>(pageFromJPA,navigatePages);
+        for(Orders o:pageOrders.getContent()){
+            int pid = o.getProduct().getId();
+            o.setProduct(productDAO.findById(pid));
+        }
+        return  pageOrders;
+    }
 }

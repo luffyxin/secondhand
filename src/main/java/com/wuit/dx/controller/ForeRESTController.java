@@ -1,6 +1,5 @@
 package com.wuit.dx.controller;
 
-import com.wuit.dx.dao.ProductDAO;
 import com.wuit.dx.entity.*;
 import com.wuit.dx.service.*;
 import com.wuit.dx.util.Result;
@@ -11,7 +10,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 /**

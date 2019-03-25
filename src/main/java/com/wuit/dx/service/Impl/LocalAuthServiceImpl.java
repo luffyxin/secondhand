@@ -37,6 +37,7 @@ public class LocalAuthServiceImpl implements LocalAuthService {
         LocahAuth save = locahAuthDAO.save(localAuth);
         PersonInfo p=new PersonInfo();
         p.setLocalAuth(save);
+        p.setId(save.getId());
         PersonInfo psave= personInfoDAO.save(p);
         return save != null;
     }

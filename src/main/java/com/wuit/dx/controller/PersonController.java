@@ -5,24 +5,15 @@ import com.wuit.dx.entity.PersonInfo;
 import com.wuit.dx.service.LocalAuthService;
 import com.wuit.dx.service.PersonInfoService;
 import com.wuit.dx.util.ImageUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
-import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
-import java.awt.image.BufferedImage;
-import java.io.*;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by ${DX} on 2018/10/27.
@@ -67,26 +58,6 @@ public class PersonController {
     }
 
 
-    @RequestMapping("/personinfo")
-    public String personinfo(MultipartFile profile,String email,String name,String gender) throws IOException {
-        System.out.println(email);
-        System.out.println(name);
-        System.out.println(gender);
-        System.out.println(profile.getName());
-        InputStream inputStream=profile.getInputStream();
-        BufferedInputStream bis=new BufferedInputStream(inputStream);
-
-        BufferedOutputStream bos=new BufferedOutputStream(new FileOutputStream("d:/dengxin.jpg"));
-        byte[] imgs=new byte[1024];
-        int i=0;
-        while ((i=bis.read(imgs))!=-1){
-            bos.write(imgs,0,i);
-        }
-        bos.close();
-        bis.close();
-        return "redirect:/";
-    }
-
     @ResponseBody
     @PostMapping("/personinfoes")
     public Object savePersonInfo( MultipartFile profileImg,String []  personinfo, HttpServletRequest request)throws Exception{
@@ -104,8 +75,7 @@ public class PersonController {
         p.setLocalAuth(p2.getLocalAuth());
         p.setUserType(p2.getUserType());
         personInfoService.savePersonInfo(p);
-        ImageUtil imageUtil=new ImageUtil();
-        imageUtil.saveOrUpdateImageFile("img/profileImg",p.getLocalAuth().getUsername(),profileImg,request);
+        ImageUtil.saveOrUpdateImageFile("img/profileImg",p.getLocalAuth().getUsername(),profileImg,request);
         return p;
     }
 }

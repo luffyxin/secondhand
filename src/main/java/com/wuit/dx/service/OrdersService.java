@@ -14,4 +14,6 @@ public interface OrdersService {
     Orders createOrder(Orders orders);
 
     Page4Navigator<Orders> getOrderBybuyer(int buyerid,int start,int size,int navigatePages);
+
+    Page4Navigator<Orders> getOrderByseller(int buyerid,int start,int size,int navigatePages);
 }

@@ -8,14 +8,16 @@
             <th>交易操作</th>
         </tr>
         </thead>
-        <tbody v-for = "o in orders" >
+        <tbody v-for = "o,index in orders" >
         <div >
             <tr class="bg-info" >
                 <td>购买日期：{{o.createDate | formatDateFilter("YYYY-MM-DD")}}</td>
                 <td>订单号：{{o.orderNo}}</td>
-                <td>卖家：{{o.product.personInfo.name}}</td>
+                <td th:if="${order == 'buy'}">卖家：{{o.product.personInfo.name}}</td>
+                <td th:if="${order == 'sell'}">买家：{{personInfoList[index].name}}</td>
                 <td></td>
-                <td>电话：{{o.product.personInfo.tel}}</td>
+                <td th:if="${order == 'buy'}">电话：{{o.product.personInfo.tel}}</td>
+                <td th:if="${order == 'sell'}">电话：{{personInfoList[index].tel}}</td>
             </tr>
             <tr>
                 <td>

@@ -17,8 +17,8 @@
                     list:function(start){
                         var url =  this.uri + "?start="+start;
                         axios.get(url).then(function(response) {
-                            vue.pagination =response.data;
-                            vue.orders = response.data.content;
+                            vue.pagination =response.data.page;
+                            vue.orders = response.data.page.content;
                         });
                     },
                     jump: function(page){
@@ -33,6 +33,6 @@
     </script>
     <div class="homepageDiv">
         <div  th:replace="include/fore/personcenter/nav::html(activeUri='buy')" ></div>
-        <div th:replace="include/fore/personcenter/orderList::html" ></div>
+        <div th:replace="include/fore/personcenter/orderList::html(order='buy')" ></div>
     </div>
 </div>

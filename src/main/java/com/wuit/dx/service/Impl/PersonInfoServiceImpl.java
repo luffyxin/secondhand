@@ -26,4 +26,9 @@ public class PersonInfoServiceImpl implements PersonInfoService {
     public PersonInfo savePersonInfo(PersonInfo personInfo) {
         return personInfoDAO.save(personInfo);
     }
+
+    @Override
+    public PersonInfo findById(int id) {
+        return personInfoDAO.findById(id);
+    }
 }

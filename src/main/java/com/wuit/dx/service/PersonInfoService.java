@@ -11,4 +11,6 @@ public interface PersonInfoService {
     PersonInfo findbyLocalAuth(LocahAuth locahAuth);
 
     PersonInfo savePersonInfo(PersonInfo personInfo);
+
+    PersonInfo findById(int id);
 }
