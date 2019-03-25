@@ -1,0 +1,40 @@
+<div th:fragment="html" xmlns:th="http://www.w3.org/1999/xhtml">
+    <script>
+        $(function(){
+            var data4Vue = {
+                uri:'ordersSell',
+                pagination:{},
+                orders : [] ,
+                personInfoList : []
+            };
+            //ViewModel
+            var vue = new Vue({
+                el: '#workingArea',
+                data: data4Vue,
+                mounted:function(){ //mounted　表示这个 Vue 对象加载成功了
+                    this.list(0);
+                },
+                methods: {
+                    list:function(start){
+                        var url =  this.uri + "?start="+start;
+                        axios.get(url).then(function(response) {
+                            vue.pagination =response.data.page;
+                            vue.orders = response.data.page.content;
+                            vue.personInfoList = response.data.personInfoList;
+                        });
+                    },
+                    jump: function(page){
+                        jump(page,vue); //定义在adminHeader.html 中
+                    },
+                    jumpByNumber: function(start){
+                        jumpByNumber(start,vue);
+                    }
+                }
+            });
+        });
+    </script>
+    <div class="homepageDiv">
+        <div  th:replace="include/fore/personcenter/nav::html(activeUri='myOrder')" ></div>
+        <div th:replace="include/fore/personcenter/orderList::html(order='sell')" ></div>
+    </div>
+</div>
