@@ -15,7 +15,7 @@
                 },
                 methods: {
                     list:function(start){
-                        var url =  this.uri + "?start="+start;
+                        var url =  this.uri + "?start="+start+"&size=8";
                         axios.get(url).then(function(response) {
                             vue.pagination =response.data.page;
                             vue.products = response.data.page.content;

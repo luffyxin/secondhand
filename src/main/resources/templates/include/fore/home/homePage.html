@@ -24,7 +24,7 @@
                             vue.categories = response.data;
                         });
 
-                        var urlp =  this.urip+ "?start="+start;
+                        var urlp =  this.urip+ "?start="+start+"&size=8";
                         axios.get(urlp).then(function(response) {
                             vue.pagination =response.data.page;
                             vue.products = response.data.page.content;

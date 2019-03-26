@@ -1,0 +1,29 @@
+<div th:fragment="html" xmlns:th="http://www.w3.org/1999/xhtml">
+    <script>
+        $(function(){
+            var data4Vue = {
+                uri:'passWd',
+                passwd:{newPassWd:'',oldPassWd:''}
+            };
+            //ViewModel
+            var vue = new Vue({
+                el: '#workingArea',
+                data: data4Vue,
+                mounted:function(){ //mounted　表示这个 Vue 对象加载成功了
+                },
+                methods: {
+                    save:function(){
+                        var url =  this.uri;
+                        axios.post(url,this.passwd).then(function(response) {
+                            location.href="personcenter";
+                        });
+                    }
+                }
+            });
+        });
+    </script>
+    <div class="homepageDiv">
+        <div  th:replace="include/fore/personcenter/nav::html(activeUri='passWd')" ></div>
+        <div th:replace="include/fore/personcenter/passWd::html"></div>
+    </div>
+</div>

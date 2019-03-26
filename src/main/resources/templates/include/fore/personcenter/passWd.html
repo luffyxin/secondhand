@@ -1,0 +1,15 @@
+<div class="personinforight col-sm-4" th:fragment="html" xmlns:th="http://www.w3.org/1999/xhtml">
+    <form style="width: 400px" >
+        <div class="form-group">
+            <label for="oldPassWd">旧密码</label>
+            <input type="password" v-model="passwd.oldPassWd" class="form-control" id="oldPassWd" name="oldPassWd" placeholder="旧密码">
+        </div>
+
+        <div class="form-group">
+            <label for="newPassWd">新密码</label>
+            <input type="password" v-model="passwd.newPassWd" class="form-control" id="newPassWd" name="newPassWd" placeholder="新密码">
+        </div>
+
+        <button @click="save" class="btn btn-default">保存</button>
+    </form>
+</div>

@@ -47,4 +47,9 @@ public class LocalAuthServiceImpl implements LocalAuthService {
         LocahAuth auth=  locahAuthDAO.findByUsernameAndPassword(locahAuth.getUsername(),locahAuth.getPassword());
         return auth;
     }
+
+    @Override
+    public LocahAuth updatePassWd(LocahAuth locahAuth) {
+        return locahAuthDAO.save(locahAuth);
+    }
 }

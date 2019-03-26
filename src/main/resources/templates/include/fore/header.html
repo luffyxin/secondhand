@@ -17,7 +17,6 @@
                 var index=0;
                 search=search.substr(1); //去除开头的“?”
                 arrPara=search.split("&");
-
                 for(i in arrPara){
                     var paraPre=para+"="; //参数前缀。即参数名+“=”，如“para=”
                     if(arrPara[i].indexOf(paraPre)==0&& paraPre.length<arrPara[i].length){

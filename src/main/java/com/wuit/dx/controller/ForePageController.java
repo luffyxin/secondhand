@@ -61,4 +61,9 @@ public class ForePageController {
     public String myPublish(){
         return "fore/myPublish";
     }
+
+    @GetMapping("/passWd")
+    public String passwd(){
+        return "fore/passWd";
+    }
 }

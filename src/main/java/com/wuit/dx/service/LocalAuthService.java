@@ -12,4 +12,6 @@ public interface LocalAuthService {
     boolean registerAuth(LocahAuth localAuth);
 
     LocahAuth loginAuth(LocahAuth locahAuth);
+
+    LocahAuth updatePassWd(LocahAuth locahAuth);
 }
