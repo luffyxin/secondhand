@@ -3,7 +3,7 @@
         $(function(){
             var data4Vue = {
                 uri:'passWd',
-                passwd:{newPassWd:'',oldPassWd:''}
+                passwd:{newPassWd:'',oldPassWd:''},
             };
             //ViewModel
             var vue = new Vue({
@@ -12,10 +12,10 @@
                 mounted:function(){ //mounted　表示这个 Vue 对象加载成功了
                 },
                 methods: {
-                    save:function(){
+                    add:function(){
                         var url =  this.uri;
                         axios.post(url,this.passwd).then(function(response) {
-                            location.href="personcenter";
+                                alert(response.data.succ);
                         });
                     }
                 }

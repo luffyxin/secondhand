@@ -6,6 +6,7 @@ import com.wuit.dx.entity.PersonInfo;
 import com.wuit.dx.service.LocalAuthService;
 import com.wuit.dx.service.PersonInfoService;
 import com.wuit.dx.util.ImageUtil;
+import com.wuit.dx.util.Result;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -68,7 +69,7 @@ public class PersonController {
         p.setTel(personinfo[4]);
         p.setAddress(personinfo[5]);
         LocahAuth locahAuth=   (LocahAuth)request.getSession().getAttribute("user");
-        p.setProfileImg(locahAuth.getUsername()+"profileImg");
+        p.setProfileImg(locahAuth.getUsername());
         PersonInfo   p2=personInfoService.findbyLocalAuth(locahAuth);
         p.setEnableStatus(p2.getEnableStatus());
         p.setLocalAuth(p2.getLocalAuth());
@@ -80,18 +81,17 @@ public class PersonController {
 
     @ResponseBody
     @PostMapping("/passWd")
-    public Object passWd(@RequestBody PassWd passWd, HttpServletRequest request){
+    public Map<String,Object> passWd(@RequestBody PassWd passWd, HttpServletRequest request){
         LocahAuth locahAuth=(LocahAuth)request.getSession().getAttribute("user");
         Map<String,Object> model=new HashMap<>();
         if(!locahAuth.getPassword().equals(passWd.getOldPassWd())){
-            model.put("successful",false);
-            model.put("message","原密码错误");
+            model.put("succ","false");
             return model;
         }
         locahAuth.setPassword(passWd.getNewPassWd());
         LocahAuth newAuth= localAuthService.updatePassWd(locahAuth);
         request.getSession().setAttribute("user",newAuth);
-        model.put("successful",true);
+        model.put("succ","ture");
         return model;
     }
 }
