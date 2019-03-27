@@ -85,4 +85,13 @@ public class ProductsServiceImpl implements ProductService {
         Page4Navigator<Product> products=new Page4Navigator<>(pageFromJPA,navigatePages);
         return  products;
     }
+
+    @Override
+    public Page4Navigator<Product> searchProduct(String keyword, int start, int size, int navigatePages) {
+        Sort sort=new Sort(Sort.Direction.DESC,"id");
+        Pageable pageable=new PageRequest(start,size,sort);
+        Page pageFromJPA= productDAO.findByProductNameLike("%"+keyword+"%",pageable);
+        Page4Navigator<Product> products=new Page4Navigator<>(pageFromJPA,navigatePages);
+        return  products;
+    }
 }

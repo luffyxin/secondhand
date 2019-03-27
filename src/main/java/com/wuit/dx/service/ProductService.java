@@ -25,4 +25,9 @@ public interface ProductService {
     Page4Navigator<Product> getProductByPerson(PersonInfo personInfo,int start,int size,int navigatePages);
 
     Page4Navigator<Product> getProductByCategory(ProductCategory productCategory,int start,int size,int navigatePages);
+
+    Page4Navigator<Product> searchProduct(String keyword,int start,int size,int navigatePages);
+
+
+
 }

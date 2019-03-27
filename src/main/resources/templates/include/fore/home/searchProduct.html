@@ -1,0 +1,49 @@
+<div th:fragment="html" xmlns:th="http://www.w3.org/1999/xhtml">
+    <script>
+        $(function(){
+            var keyword = getUrlParms("keyword");
+            var data4Vue = {
+                uri:'forehome',
+                urip: 'searchProduct',
+                categories: [],
+                pagination:{},
+                products: []
+            };
+            //ViewModel
+            var vue = new Vue({
+                el: '#workingArea',
+                data: data4Vue,
+                mounted:function(){ //mounted　表示这个 Vue 对象加载成功了
+                    this.list(0);
+                },
+                methods: {
+                    list:function(start){
+                        var url =  this.uri;
+                        axios.get(url).then(function(response) {
+                            vue.categories = response.data;
+                        });
+                        var urlp =  this.urip+ "?start="+start+"&size=8"+"&keyword="+keyword;
+                        axios.get(urlp).then(function(response) {
+                            vue.pagination =response.data.page;
+                            vue.products = response.data.page.content;
+                        });
+                    },
+                    jump: function(page){
+                        jump(page,vue); //定义在adminHeader.html 中
+                    },
+                    jumpByNumber: function(start){
+                        jumpByNumber(start,vue);
+                    }
+                }
+            });
+
+        });
+
+    </script>
+
+    <title>闲猪校园二手网</title>
+    <div class="homepageDiv">
+        <div th:replace="include/fore/home/category::html" ></div>
+        <div th:replace="include/fore/home/productList::html"></div>
+    </div>
+</div>

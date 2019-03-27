@@ -63,6 +63,20 @@ public class ForeRESTController {
         return model;
     }
 
+    @GetMapping("/searchProduct")
+    public Map<String,Object> searchProduct(@RequestParam(value = "start",
+            defaultValue = "0") int start, @RequestParam(value = "size",
+            defaultValue = "5") int size,@RequestParam String keyword, HttpServletRequest request)
+            throws Exception {
+        if(null==keyword){
+            keyword = "";
+        }
+        Page4Navigator<Product> page = productService.searchProduct(keyword,start, size, 5);
+        Map<String, Object> model = new HashMap<>();
+        model.put("page", page);
+        return model;
+    }
+
     @GetMapping("/foreproduct/{pid}")
     public Object product(@PathVariable("pid") int pid) {
         Product p= productService.getProductById(pid);
