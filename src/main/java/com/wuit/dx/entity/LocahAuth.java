@@ -23,6 +23,12 @@ public class LocahAuth {
     // 密码
     private String password;
 
+    //可用状态
+    private  int enable;
+
+    //账号类型 0 网站会员 1 管理员
+    private int user_type;
+
     public int getId() {
         return id;
     }
@@ -47,5 +53,19 @@ public class LocahAuth {
         this.password = password;
     }
 
+    public int getEnable() {
+        return enable;
+    }
 
+    public void setEnable(int enable) {
+        this.enable = enable;
+    }
+
+    public int getUser_type() {
+        return user_type;
+    }
+
+    public void setUser_type(int user_type) {
+        this.user_type = user_type;
+    }
 }

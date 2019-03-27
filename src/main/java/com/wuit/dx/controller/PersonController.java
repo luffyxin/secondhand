@@ -71,9 +71,7 @@ public class PersonController {
         LocahAuth locahAuth=   (LocahAuth)request.getSession().getAttribute("user");
         p.setProfileImg(locahAuth.getUsername());
         PersonInfo   p2=personInfoService.findbyLocalAuth(locahAuth);
-        p.setEnableStatus(p2.getEnableStatus());
         p.setLocalAuth(p2.getLocalAuth());
-        p.setUserType(p2.getUserType());
         personInfoService.savePersonInfo(p);
         ImageUtil.saveOrUpdateImageFile("img/profileImg",p.getLocalAuth().getUsername(),profileImg,request);
         return p;

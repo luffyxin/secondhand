@@ -31,11 +31,6 @@ public class PersonInfo {
 
     //用户地址
     private String address;
-
-    // 可用状态：0、被禁止 1、可用
-    private Integer enableStatus;
-    // 1.顾客 2.超级管理员
-    private Integer userType;
     // 用户拥有的商品
     @Transient
     private List<Product> products;
@@ -106,22 +101,6 @@ public class PersonInfo {
 
     public void setGender(String gender) {
         this.gender = gender;
-    }
-
-    public Integer getEnableStatus() {
-        return enableStatus;
-    }
-
-    public void setEnableStatus(Integer enableStatus) {
-        this.enableStatus = enableStatus;
-    }
-
-    public Integer getUserType() {
-        return userType;
-    }
-
-    public void setUserType(Integer userType) {
-        this.userType = userType;
     }
 
     public List<Product> getProducts() {
