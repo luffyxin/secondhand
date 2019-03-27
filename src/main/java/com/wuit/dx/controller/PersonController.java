@@ -79,19 +79,16 @@ public class PersonController {
         return p;
     }
 
-    @ResponseBody
-    @PostMapping("/passWd")
-    public Map<String,Object> passWd(@RequestBody PassWd passWd, HttpServletRequest request){
+    @PostMapping("/passWdChange")
+    public String passWd(PassWd passWd,Model model, HttpServletRequest request){
         LocahAuth locahAuth=(LocahAuth)request.getSession().getAttribute("user");
-        Map<String,Object> model=new HashMap<>();
         if(!locahAuth.getPassword().equals(passWd.getOldPassWd())){
-            model.put("succ","false");
-            return model;
+            model.addAttribute("msg","原始密码错误");
+            return "fore/passWd";
         }
         locahAuth.setPassword(passWd.getNewPassWd());
         LocahAuth newAuth= localAuthService.updatePassWd(locahAuth);
         request.getSession().setAttribute("user",newAuth);
-        model.put("succ","ture");
-        return model;
-    }
+        return "redirect:/login";
+}
 }

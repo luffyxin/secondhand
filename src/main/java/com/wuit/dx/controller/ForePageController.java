@@ -66,4 +66,9 @@ public class ForePageController {
     public String passwd(){
         return "fore/passWd";
     }
+
+    @GetMapping("/category")
+    public String category(){
+        return "fore/category";
+    }
 }

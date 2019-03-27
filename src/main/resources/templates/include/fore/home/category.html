@@ -8,7 +8,7 @@
                 <span style="margin-left:10px" >商品分类</span>
             </div>
             <div class="rightMenu">
-                <span v-for="c,index in categories" v-if='index<=10'>
+                <span v-for="c,index in categories" v-if='index<=6'>
                         <a :href="'category?cid='+c.id">{{c.productCategoryName}}</a>
                     </span>
             </div>

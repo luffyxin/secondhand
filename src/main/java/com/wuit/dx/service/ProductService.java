@@ -2,6 +2,7 @@ package com.wuit.dx.service;
 
 import com.wuit.dx.entity.PersonInfo;
 import com.wuit.dx.entity.Product;
+import com.wuit.dx.entity.ProductCategory;
 import com.wuit.dx.util.Page4Navigator;
 import org.springframework.data.domain.Pageable;
 
@@ -22,4 +23,6 @@ public interface ProductService {
     Product saveProduct(Product product);
 
     Page4Navigator<Product> getProductByPerson(PersonInfo personInfo,int start,int size,int navigatePages);
+
+    Page4Navigator<Product> getProductByCategory(ProductCategory productCategory,int start,int size,int navigatePages);
 }

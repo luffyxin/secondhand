@@ -1,9 +1,10 @@
 <div th:fragment="html" xmlns:th="http://www.w3.org/1999/xhtml">
     <script>
         $(function(){
+            var cid = getUrlParms("cid");
             var data4Vue = {
                 uri:'forehome',
-                urip: 'products',
+                urip: 'productBycate',
                 categories: [],
                 pagination:{},
                 products: []
@@ -21,7 +22,7 @@
                         axios.get(url).then(function(response) {
                             vue.categories = response.data;
                         });
-                        var urlp =  this.urip+ "?start="+start+"&size=8";
+                        var urlp =  this.urip+ "?start="+start+"&size=8"+"&cid="+cid;
                         axios.get(urlp).then(function(response) {
                             vue.pagination =response.data.page;
                             vue.products = response.data.page.content;

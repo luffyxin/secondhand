@@ -50,6 +50,19 @@ public class ForeRESTController {
         return model;
     }
 
+    @GetMapping("/productBycate")
+    public Map<String,Object> getProductsBycate(@RequestParam(value = "start",
+            defaultValue = "0") int start, @RequestParam(value = "size",
+            defaultValue = "5") int size,@RequestParam int cid, HttpServletRequest request)
+            throws Exception {
+        ProductCategory productCategory=new ProductCategory();
+        productCategory.setId(cid);
+        Page4Navigator<Product> page = productService.getProductByCategory(productCategory,start, size, 5);
+        Map<String, Object> model = new HashMap<>();
+        model.put("page", page);
+        return model;
+    }
+
     @GetMapping("/foreproduct/{pid}")
     public Object product(@PathVariable("pid") int pid) {
         Product p= productService.getProductById(pid);
