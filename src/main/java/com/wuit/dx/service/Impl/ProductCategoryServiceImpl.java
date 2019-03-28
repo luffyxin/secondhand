@@ -1,8 +1,14 @@
 package com.wuit.dx.service.Impl;
 
 import com.wuit.dx.dao.ProductCategoryDAO;
+import com.wuit.dx.entity.Product;
 import com.wuit.dx.entity.ProductCategory;
 import com.wuit.dx.service.ProductCategoryService;
+import com.wuit.dx.util.Page4Navigator;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -18,8 +24,12 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
     private ProductCategoryDAO productCategoryDAO;
 
     @Override
-    public List<ProductCategory> getAllProCate() {
-        return productCategoryDAO.findAllByOrOOrderByPriority();
+    public Page4Navigator getAllProCate(int start, int size, int navigatePages) {
+        Sort sort=new Sort(Sort.Direction.DESC,"priority");
+        Pageable pageable=new PageRequest(start,size,sort);
+        Page<ProductCategory> pageFromJPA = productCategoryDAO.findAll(pageable);
+        Page4Navigator<ProductCategory> categoryList=new Page4Navigator<>(pageFromJPA,navigatePages);
+        return categoryList;
     }
 
     @Override

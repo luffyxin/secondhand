@@ -5,6 +5,7 @@ import com.wuit.dx.service.*;
 import com.wuit.dx.util.Page4Navigator;
 import com.wuit.dx.util.Result;
 import org.apache.commons.lang.math.RandomUtils;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -35,9 +36,14 @@ public class ForeRESTController {
     private OrdersService ordersService;
 
     @GetMapping("/forehome")
-    public Object home(){
-        List<ProductCategory>  cs=productCategoryService.getAllProCate();
-        return cs;
+    public Map<String,Object> home(@RequestParam(value = "start",
+            defaultValue = "0") int start, @RequestParam(value = "size",
+            defaultValue = "6") int size, HttpServletRequest request)
+            throws Exception{
+        Page4Navigator<ProductCategory> page =productCategoryService.getAllProCate(start,size,5);
+        Map<String,Object> model=new HashMap<>();
+        model.put("page",page);
+        return model;
     }
 
     @GetMapping("/products")

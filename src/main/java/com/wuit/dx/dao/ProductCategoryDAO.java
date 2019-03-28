@@ -13,7 +13,4 @@ public interface ProductCategoryDAO extends JpaRepository<ProductCategory,Intege
 
     ProductCategory findByProductCategoryName(String name);
 
-    // todo 修改
-
-    List<ProductCategory> findAllByOrOOrderByPriority();
 }

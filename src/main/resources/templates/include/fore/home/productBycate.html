@@ -20,7 +20,7 @@
                     list:function(start){
                         var url =  this.uri;
                         axios.get(url).then(function(response) {
-                            vue.categories = response.data;
+                            vue.categories = response.datapage.content;
                         });
                         var urlp =  this.urip+ "?start="+start+"&size=8"+"&cid="+cid;
                         axios.get(urlp).then(function(response) {

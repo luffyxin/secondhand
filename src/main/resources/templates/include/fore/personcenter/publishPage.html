@@ -23,7 +23,7 @@
                     load:function(){
                         var url =  this.uriCate;
                         axios.get(url).then(function(response) {
-                            vue.categories =response.data;
+                            vue.categories =response.data.page.content;
                         });
                     },
                     add:function(){

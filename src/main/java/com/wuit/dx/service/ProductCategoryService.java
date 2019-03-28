@@ -1,6 +1,7 @@
 package com.wuit.dx.service;
 
 import com.wuit.dx.entity.ProductCategory;
+import com.wuit.dx.util.Page4Navigator;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
 
 public interface ProductCategoryService {
 
-    List<ProductCategory> getAllProCate();
+    Page4Navigator<ProductCategory> getAllProCate(int start,int size,int navigatePages);
 
     ProductCategory getProCateByName(String name);
 
