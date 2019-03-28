@@ -8,7 +8,6 @@ import com.wuit.dx.service.LocalAuthService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.Date;
 
 /**
  * Created by ${DX} on 2018/10/27.
@@ -34,6 +33,7 @@ public class LocalAuthServiceImpl implements LocalAuthService {
 
     @Override
     public boolean registerAuth(LocahAuth localAuth) {
+        localAuth.setEnable(1);
         LocahAuth save = locahAuthDAO.save(localAuth);
         PersonInfo p=new PersonInfo();
         p.setLocalAuth(save);
@@ -51,5 +51,17 @@ public class LocalAuthServiceImpl implements LocalAuthService {
     @Override
     public LocahAuth updatePassWd(LocahAuth locahAuth) {
         return locahAuthDAO.save(locahAuth);
+    }
+
+    @Override
+    public LocahAuth changeEnable(int id) {
+       LocahAuth locahAuth= locahAuthDAO.findOne(id);
+       if(locahAuth.getEnable()==0){
+           locahAuth.setEnable(1);
+       }else {
+           locahAuth.setEnable(0);
+       }
+       locahAuthDAO.save(locahAuth);
+        return locahAuth;
     }
 }

@@ -6,14 +6,17 @@ import com.wuit.dx.entity.PersonInfo;
 import com.wuit.dx.service.LocalAuthService;
 import com.wuit.dx.service.PersonInfoService;
 import com.wuit.dx.util.ImageUtil;
+import com.wuit.dx.util.Page4Navigator;
 import com.wuit.dx.util.Result;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import java.util.*;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by ${DX} on 2018/10/27.
@@ -44,6 +47,10 @@ public class PersonController {
     public String login(LocahAuth locahAuth,Model model,HttpServletRequest request){
        LocahAuth auth=  localAuthService.loginAuth(locahAuth);
         if(auth!=null){
+            if(auth.getEnable()==0){
+                model.addAttribute("msg","账号被禁用");
+                return "/login";
+            }
             request.getSession().setAttribute("user",auth);
             return "redirect:/";
         }else {
@@ -88,7 +95,23 @@ public class PersonController {
         LocahAuth newAuth= localAuthService.updatePassWd(locahAuth);
         request.getSession().setAttribute("user",newAuth);
         return "redirect:/login";
-        }
+    }
 
+    @ResponseBody
+    @GetMapping("/getAllPerson")
+    public Map<String,Object> getAllPerson(@RequestParam(value = "start", defaultValue = "0") int start,
+                               @RequestParam(value = "size", defaultValue = "5") int size)throws Exception{
+        start =start<0?0:start;
+        Page4Navigator<PersonInfo> page=personInfoService.findAll(start,size,5);
+        Map<String,Object> model=new HashMap<>();
+        model.put("page",page);
+        return model;
+    }
 
+    @ResponseBody
+    @PutMapping("/changeEnable")
+    public Object changeEnable(int id){
+       LocahAuth locahAuth= localAuthService.changeEnable(id);
+       return Result.success();
+    }
 }

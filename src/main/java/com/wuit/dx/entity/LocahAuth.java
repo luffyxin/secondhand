@@ -3,7 +3,6 @@ package com.wuit.dx.entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import java.util.Date;
 
 /**
  * Created by ${DX} on 2018/10/23.
@@ -27,7 +26,7 @@ public class LocahAuth {
     private  int enable;
 
     //账号类型 0 网站会员 1 管理员
-    private int user_type;
+    private int userType;
 
     public int getId() {
         return id;
@@ -61,11 +60,11 @@ public class LocahAuth {
         this.enable = enable;
     }
 
-    public int getUser_type() {
-        return user_type;
+    public int getUserType() {
+        return userType;
     }
 
-    public void setUser_type(int user_type) {
-        this.user_type = user_type;
+    public void setUserType(int userType) {
+        this.userType = userType;
     }
 }

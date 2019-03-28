@@ -106,6 +106,15 @@
             if(value == '1')
                 return "交易已完成";
         });
+        Vue.filter('enable',function (value) {
+            if(value == '0'){
+                return "启用";
+            }
+            if(value == '1'){
+                return "禁用";
+            }
+
+        });
 
     </script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">

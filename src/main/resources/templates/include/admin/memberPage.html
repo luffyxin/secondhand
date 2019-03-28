@@ -1,25 +1,73 @@
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" th:fragment="html" xmlns:th="http://www.w3.org/1999/xhtml">
-    <h2 class="sub-header">Section title</h2>
+    <script>
+        $(function(){
+            var data4Vue = {
+                uri:'getAllPerson',
+                pagination:{},
+                personInfo: [],
+
+            };
+            //ViewModel
+            var vue = new Vue({
+                el: '#workingArea',
+                data: data4Vue,
+                mounted:function(){ //mounted　表示这个 Vue 对象加载成功了
+                    this.list(0);
+                },
+                methods: {
+                    list:function(start){
+                        var url =  this.uri+ "?start="+start+"&size=6";
+                        axios.get(url).then(function(response) {
+                            vue.pagination =response.data.page;
+                            vue.personInfo = response.data.page.content;
+                        });
+                    },
+                    change:function (id) {
+                        var url = "changeEnable?id="+id;
+                        axios.put(url).then(function (response) {
+                            vue.list(0);
+                        });
+
+                    },
+                    jump: function(page){
+                        jump(page,vue); //定义在adminHeader.html 中
+                    },
+                    jumpByNumber: function(start){
+                        jumpByNumber(start,vue);
+                    }
+                }
+            });
+
+        });
+    </script>
+    <h2 class="sub-header">会员管理</h2>
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
             <tr>
                 <th>ID</th>
                 <th>头像</th>
-                <th>邮箱</th>
+                <th>昵称</th>
+                <th>账号</th>
                 <th>性别</th>
                 <th>电话</th>
+                <tf>操作</tf>
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>1,001</td>
-                <td>Lorem</td>
-                <td>ipsum</td>
-                <td>dolor</td>
-                <td>sit</td>
+            <tr v-for="p,index in personInfo">
+                <td>{{p.id}}</td>
+                <td><img :src="'img/profileImg/'+p.profileImg+'.jpg'" style="width: 100px"></td>
+                <td>{{p.name}}</td>
+                <td>{{p.localAuth.username}}</td>
+                <td>{{p.gender}}</td>
+                <td>{{p.tel}}</td>
+                <td >
+                    <button @click="change(p.id)" :class="[p.localAuth.enable == 0 ? 'btn btn-primary':'btn btn-danger' ]">{{p.localAuth.enable|enable}}</button>
+                </td>
             </tr>
             </tbody>
         </table>
+        <div th:replace="include/admin/adminPage::html"></div>
     </div>
 </div>

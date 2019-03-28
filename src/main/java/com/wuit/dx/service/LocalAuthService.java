@@ -14,4 +14,6 @@ public interface LocalAuthService {
     LocahAuth loginAuth(LocahAuth locahAuth);
 
     LocahAuth updatePassWd(LocahAuth locahAuth);
+
+    LocahAuth changeEnable(int id);
 }

@@ -8,6 +8,7 @@
 
     <span th:if="${null!=session.user}">
         <a href="personcenter" th:text="${session.user.username}"></a>
+        <a th:if="${session.user.userType == 1}" href="admin">后台管理</a>
         <a href="forelogout" >退出</a>
     </span>
 
@@ -19,5 +20,6 @@
     <span class="pull-right">
             <a href="myOrder">我的订单</a>
             <a href="publish">发布二手宝贝</a>
+
     </span>
 </nav>

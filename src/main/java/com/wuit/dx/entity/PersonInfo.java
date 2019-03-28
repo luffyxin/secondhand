@@ -3,7 +3,6 @@ package com.wuit.dx.entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -15,7 +14,6 @@ import java.util.List;
 public class PersonInfo {
     // 主键ID
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name = "id")
     private int id;
     // 用户名称
