@@ -4,7 +4,7 @@
             var data4Vue = {
                 uri:'getAllPerson',
                 pagination:{},
-                personInfo: [],
+                personInfo: []
 
             };
             //ViewModel
@@ -27,7 +27,6 @@
                         axios.put(url).then(function (response) {
                             vue.list(0);
                         });
-
                     },
                     jump: function(page){
                         jump(page,vue); //定义在adminHeader.html 中
@@ -51,7 +50,7 @@
                 <th>账号</th>
                 <th>性别</th>
                 <th>电话</th>
-                <tf>操作</tf>
+                <th>操作</th>
             </tr>
             </thead>
             <tbody>

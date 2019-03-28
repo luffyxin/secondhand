@@ -19,11 +19,16 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 
     @Override
     public List<ProductCategory> getAllProCate() {
-        return productCategoryDAO.findAll();
+        return productCategoryDAO.findAllByOrOOrderByPriority();
     }
 
     @Override
     public ProductCategory getProCateByName(String name) {
         return productCategoryDAO.findByProductCategoryName(name);
+    }
+
+    @Override
+    public void delCategory(int cid) {
+        productCategoryDAO.delete(cid);
     }
 }

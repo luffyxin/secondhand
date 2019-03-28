@@ -1,0 +1,57 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" th:fragment="html" xmlns:th="http://www.w3.org/1999/xhtml">
+    <script>
+        $(function(){
+            var data4Vue = {
+                uri:'forehome',
+                categories: []
+            };
+            //ViewModel
+            var vue = new Vue({
+                el: '#workingArea',
+                data: data4Vue,
+                mounted:function(){ //mounted　表示这个 Vue 对象加载成功了
+                    this.load();
+                },
+                methods: {
+                    load:function(){
+                        var url =  this.uri;
+                        axios.get(url).then(function(response) {
+                            vue.categories =response.data;
+                        });
+                    },
+                    del:function (cid) {
+                        var url= "categories/"+cid;
+                        axios.delete(url).then(function () {
+                           vue.load();
+                        });
+                    }
+                }
+            });
+
+        });
+    </script>
+    <h2 class="sub-header">分类管理</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>分类名</th>
+                <th>优先级</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="c,index in categories">
+                <td>{{c.id}}</td>
+                <td>{{c.productCategoryName}}</td>
+                <td>{{c.priority}}</td>
+                <td >
+                    <button @click="del(c.id)" class="btn btn-danger">删除</button>
+                    <button class="btn btn-primary">修改</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
