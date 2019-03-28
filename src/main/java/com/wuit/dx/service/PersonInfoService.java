@@ -2,6 +2,8 @@ package com.wuit.dx.service;
 
 import com.wuit.dx.entity.LocahAuth;
 import com.wuit.dx.entity.PersonInfo;
+import com.wuit.dx.util.Page4Navigator;
+import org.springframework.data.domain.Pageable;
 
 /**
  * @author dx
@@ -13,4 +15,6 @@ public interface PersonInfoService {
     PersonInfo savePersonInfo(PersonInfo personInfo);
 
     PersonInfo findById(int id);
-}
+
+    Page4Navigator<PersonInfo>  findAll(int start, int size, int navigatePages);
+ }

@@ -88,5 +88,7 @@ public class PersonController {
         LocahAuth newAuth= localAuthService.updatePassWd(locahAuth);
         request.getSession().setAttribute("user",newAuth);
         return "redirect:/login";
-}
+        }
+
+
 }
