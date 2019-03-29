@@ -6,10 +6,9 @@ import com.wuit.dx.entity.PersonInfo;
 import com.wuit.dx.service.OrdersService;
 import com.wuit.dx.service.PersonInfoService;
 import com.wuit.dx.util.Page4Navigator;
+import com.wuit.dx.util.Result;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -70,6 +69,15 @@ public class OrdersController {
         }
         modle.put("personInfoList",personInfoList);
         return modle;
+    }
+
+    @ResponseBody
+    @PutMapping("/orderStatus/{oid}")
+    public Object orderStatus(@PathVariable("oid") int oid){
+        Orders orders= ordersService.getOrderById(oid);
+        orders.setStatus(1);
+        ordersService.updateOrderStatus(orders);
+        return Result.success();
     }
 
 }

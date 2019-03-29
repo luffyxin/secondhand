@@ -43,7 +43,7 @@
                     </span>
                 </td>
                 <td>
-                    <button class="btn bg-primary" >{{o.status | statusFilter}}</button>
+                    <button @click="orderStatus(o.id)" :class="[o.status == 0 ? 'btn btn-primary':'btn btn-danger']" >{{o.status | statusFilter}}</button>
                 </td>
             </tr>
         </div>

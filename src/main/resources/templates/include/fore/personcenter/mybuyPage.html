@@ -21,6 +21,12 @@
                             vue.orders = response.data.page.content;
                         });
                     },
+                    orderStatus:function (oid) {
+                        var url= "orderStatus/"+oid;
+                        axios.put(url).then(function (response) {
+                            vue.list(0);
+                        });
+                    },
                     jump: function(page){
                         jump(page,vue); //定义在adminHeader.html 中
                     },

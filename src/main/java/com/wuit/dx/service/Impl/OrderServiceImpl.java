@@ -5,7 +5,6 @@ import com.wuit.dx.dao.ProductDAO;
 import com.wuit.dx.entity.Orders;
 import com.wuit.dx.entity.Product;
 import com.wuit.dx.service.OrdersService;
-import com.wuit.dx.service.ProductImgService;
 import com.wuit.dx.service.ProductService;
 import com.wuit.dx.util.Page4Navigator;
 import org.springframework.data.domain.Page;
@@ -15,7 +14,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * @author dx
@@ -66,4 +64,16 @@ public class OrderServiceImpl implements OrdersService {
         }
         return  pageOrders;
     }
+
+    @Override
+    public Orders getOrderById(int oid) {
+        return ordersDAO.findOne(oid);
+    }
+
+    @Override
+    public Orders updateOrderStatus(Orders orders) {
+        return ordersDAO.save(orders);
+    }
+
+
 }
