@@ -1,7 +1,6 @@
 package com.wuit.dx.service.Impl;
 
 import com.wuit.dx.dao.ProductCategoryDAO;
-import com.wuit.dx.entity.Product;
 import com.wuit.dx.entity.ProductCategory;
 import com.wuit.dx.service.ProductCategoryService;
 import com.wuit.dx.util.Page4Navigator;
@@ -12,7 +11,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.List;
+import java.util.Date;
 
 /**
  * Created by ${DX} on 2018/10/25.
@@ -40,5 +39,11 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
     @Override
     public void delCategory(int cid) {
         productCategoryDAO.delete(cid);
+    }
+
+    @Override
+    public ProductCategory updateCategory(ProductCategory productCategory) {
+        productCategory.setCreateTime(new Date());
+        return productCategoryDAO.save(productCategory);
     }
 }

@@ -1,11 +1,10 @@
 package com.wuit.dx.controller;
 
+import com.wuit.dx.entity.ProductCategory;
 import com.wuit.dx.service.ProductCategoryService;
 import com.wuit.dx.util.Result;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -23,6 +22,12 @@ public class CategoryController {
     @DeleteMapping("/categories/{cid}")
     public Object delete(@PathVariable("cid") int cid){
         productCategoryService.delCategory(cid);
+        return Result.success();
+    }
+    @ResponseBody
+    @PutMapping("/categories")
+    public Object update(@RequestBody ProductCategory category){
+        productCategoryService.updateCategory(category);
         return Result.success();
     }
 }
