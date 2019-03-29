@@ -19,4 +19,9 @@ public class AdminPageController {
     public String category(){
         return "admin/categoryManage";
     }
+
+    @GetMapping("/productManage")
+    public String product(){
+        return "admin/productManage";
+    }
 }

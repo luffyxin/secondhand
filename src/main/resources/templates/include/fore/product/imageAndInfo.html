@@ -74,7 +74,7 @@
                     </div>
                     <div>
                         <div style="float: left">
-                        <img :src="'img/profileImg/'+products.personInfo.profileImg+'.jpg'" class="profileImg">
+                        <img v-if="products.personInfo.profileImg" :src="'img/profileImg/'+products.personInfo.profileImg+'.jpg'" class="profileImg">
                         </div>
                         <div style="padding-top: 17px">
                             <span class="maijia">{{products.personInfo.name}}</span><br>

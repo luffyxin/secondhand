@@ -1,0 +1,76 @@
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" th:fragment="html" xmlns:th="http://www.w3.org/1999/xhtml">
+    <script>
+        $(function(){
+            var data4Vue = {
+                uri:'productsAdmin',
+                pagination:{},
+                products: []
+
+            };
+            //ViewModel
+            var vue = new Vue({
+                el: '#workingArea',
+                data: data4Vue,
+                mounted:function(){ //mounted　表示这个 Vue 对象加载成功了
+                    this.list(0);
+                },
+                methods: {
+                    list:function(start){
+                        var url =  this.uri+ "?start="+start+"&size=10";
+                        axios.get(url).then(function(response) {
+                            vue.pagination =response.data.page;
+                            vue.products = response.data.page.content;
+                        });
+                    },
+                    change:function (id) {
+                        var url = "productEnable/"+id;
+                        axios.put(url).then(function () {
+                            vue.list(0);
+                        });
+                    },
+                    jump: function(page){
+                        jump(page,vue); //定义在adminHeader.html 中
+                    },
+                    jumpByNumber: function(start){
+                        jumpByNumber(start,vue);
+                    }
+                }
+            });
+
+        });
+    </script>
+    <h2 class="sub-header">会员管理</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>商品图片</th>
+                <th>商品名</th>
+                <th>简介</th>
+                <th>原价</th>
+                <th>现价</th>
+                <th>分类</th>
+                <th>卖家</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="p,index in products">
+                <td>{{p.id}}</td>
+                <td><img :src="'img/productSingle_middle/'+p.imgAddr+'.jpg'" style="width: 100px"></td>
+                <td>{{p.productName}}</td>
+                <td>{{p.productDesc}}</td>
+                <td>{{p.normalPrice}}</td>
+                <td>{{p.promotionPrice}}</td>
+                <td>{{p.productCategory.productCategoryName}}</td>
+                <td>{{p.personInfo.name}}</td>
+                <td >
+                    <button @click="change(p.id)" :class="[p.enableStatus == 0 ? 'btn btn-primary':'btn btn-danger' ]">{{p.enableStatus|enableProduct}}</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div th:replace="include/admin/adminPage::html"></div>
+    </div>
+</div>

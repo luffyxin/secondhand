@@ -7,15 +7,15 @@ import com.wuit.dx.service.ProductImgService;
 import com.wuit.dx.service.ProductService;
 import com.wuit.dx.util.ImageUtil;
 import com.wuit.dx.util.Page4Navigator;
+import com.wuit.dx.util.Result;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import java.util.*;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author dx
@@ -91,5 +91,24 @@ public class ProductController {
         Map<String,Object> model=new HashMap<>();
         model.put("page",page);
         return  model;
+    }
+
+    @ResponseBody
+    @PutMapping("productEnable/{id}")
+    public Object productEnable(@PathVariable("id") int id){
+        Product product= productService.getProductById(id);
+        product.setEnableStatus(product.getEnableStatus()==0?1:0);
+        productService.saveProduct(product);
+        return Result.success();
+    }
+
+    @ResponseBody
+    @GetMapping("/productsAdmin")
+    public Map<String, Object> products(@RequestParam(value = "start", defaultValue = "0") int start,
+                                        @RequestParam(value = "size", defaultValue = "5") int size)throws Exception {
+        Page4Navigator<Product> page = productService.getAllProductsAdmin(start, size, 5);
+        Map<String, Object> model = new HashMap<>();
+        model.put("page", page);
+        return model;
     }
 }
