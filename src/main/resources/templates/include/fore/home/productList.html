@@ -1,5 +1,5 @@
 <div th:fragment="html" xmlns:th="http://www.w3.org/1999/xhtml">
-    <div th:class="${list == 'myPublish' ? 'myPublishList col-sm-10' : 'homepageCategoryProducts'}">
+    <div th:class="${list == 'myPublish' ? 'myPublishList col-sm-9' : 'homepageCategoryProducts'}">
         <div v-if="0 == products.length" class="noMatch">没有满足条件的产品</div>
         <div class="productItem"  v-for="p,index in products">
                 <a :href="'product?pid='+p.id">
