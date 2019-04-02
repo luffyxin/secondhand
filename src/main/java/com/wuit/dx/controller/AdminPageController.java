@@ -24,4 +24,5 @@ public class AdminPageController {
     public String product(){
         return "admin/productManage";
     }
+
 }
