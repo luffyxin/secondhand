@@ -16,4 +16,6 @@ public interface ProductCategoryService {
     void delCategory(int cid);
 
     ProductCategory updateCategory(ProductCategory productCategory);
+
+    ProductCategory addCategory(ProductCategory productCategory);
 }

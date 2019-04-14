@@ -30,4 +30,11 @@ public class CategoryController {
         productCategoryService.updateCategory(category);
         return Result.success();
     }
+
+    @ResponseBody
+    @PostMapping("/categories")
+    public Object add(@RequestBody ProductCategory category){
+        productCategoryService.addCategory(category);
+        return Result.success();
+    }
 }

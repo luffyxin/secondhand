@@ -4,8 +4,8 @@
             var data4Vue = {
                 uri:'forehome',
                 categories: [],
-                category: {id:'',priority:'',productCategoryName:''}
-
+                category: {id:'',priority:'',productCategoryName:''},
+                addcate: true
             };
             //ViewModel
             var vue = new Vue({
@@ -29,6 +29,7 @@
                         });
                     },
                     update:function () {
+
                         var url= "categories";
                         axios.put(url,vue.category).then(function () {
                             $('#categoryModal').modal('toggle')
@@ -36,8 +37,21 @@
 
                         });
                     },
+                    addCategory:function () {
+                        vue.category.id= '';
+                        var url= "categories";
+                        axios.post(url,vue.category).then(function () {
+                            $('#categoryModal').modal('toggle')
+                            vue.load();
+
+                        });
+                    },
                     change:function (category) {
+                        vue.addcate = false;
                         vue.category = category;
+                    },
+                    add:function () {
+                        vue.addcate = true;
                     }
                 }
             });
@@ -45,6 +59,7 @@
         });
     </script>
     <h2 class="sub-header">分类管理</h2>
+    <button @click="add()" class="btn btn-primary" data-toggle="modal" data-target="#categoryModal">新增</button>
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
@@ -75,7 +90,11 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="exampleModalLabel">分类id:{{category.id}}</h4>
+
+                    <h4 class="modal-title" id="exampleModalLabel">
+                        <span v-if="addcate">新增分类</span>
+                        <span v-else>分类id:{{category.id}}</span>
+                    </h4>
                 </div>
                 <div class="modal-body">
                     <form>
@@ -91,7 +110,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" @click="update()" class="btn btn-primary">保存</button>
+                    <button v-if="addcate" type="button" @click="addCategory()" class="btn btn-primary">保存</button>
+                    <button v-else type="button" @click="update()" class="btn btn-primary">保存</button>
                 </div>
             </div>
         </div>

@@ -5,14 +5,15 @@ import com.wuit.dx.service.*;
 import com.wuit.dx.util.Page4Navigator;
 import com.wuit.dx.util.Result;
 import org.apache.commons.lang.math.RandomUtils;
-import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author dx
@@ -56,6 +57,9 @@ public class ForeRESTController {
         return model;
     }
 
+    /**
+     *  根据分类标签搜索商品
+     */
     @GetMapping("/productBycate")
     public Map<String,Object> getProductsBycate(@RequestParam(value = "start",
             defaultValue = "0") int start, @RequestParam(value = "size",
@@ -69,6 +73,9 @@ public class ForeRESTController {
         return model;
     }
 
+    /**
+     *  根据搜索框搜索商品
+     */
     @GetMapping("/searchProduct")
     public Map<String,Object> searchProduct(@RequestParam(value = "start",
             defaultValue = "0") int start, @RequestParam(value = "size",

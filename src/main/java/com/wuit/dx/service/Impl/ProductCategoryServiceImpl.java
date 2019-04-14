@@ -46,4 +46,12 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
         productCategory.setCreateTime(new Date());
         return productCategoryDAO.save(productCategory);
     }
+
+    @Override
+    public ProductCategory addCategory(ProductCategory productCategory) {
+
+        return productCategoryDAO.save(productCategory);
+    }
+
+
 }

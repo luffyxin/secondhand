@@ -58,7 +58,7 @@ public class ProductController {
         p.setNormalPrice(product[3]);
         p.setPromotionPrice(product[4]);
         //设置物品状态，是否上架
-        p.setEnableStatus(1);
+        p.setEnableStatus(0);
         String pimgName=ImageUtil.getRandomFileName();
         p.setImgAddr(pimgName);
         ImageUtil.saveOrUpdateImageFile("img/productSingle_middle",pimgName,productImgFile,request);
